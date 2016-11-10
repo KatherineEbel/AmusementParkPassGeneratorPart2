@@ -8,7 +8,18 @@
 
 import Foundation
 
-enum TemporaryType {
+enum TemporaryType: ParkEntrant {
   case vendor(birthdate: BirthDate, dateOfVisit: String)
   case contractEmployee(projectNumber: Int, accessAreas: [AccessArea])
+}
+
+extension TemporaryType {
+  var accessAreas: [AccessArea] {
+    get {
+      return self.accessAreas
+    }
+    set {
+      accessAreas = newValue
+    }
+  }
 }

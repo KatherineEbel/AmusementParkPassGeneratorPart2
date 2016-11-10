@@ -16,4 +16,5 @@ enum AccessPassError: Error {
   case InvalidDateFormat(message: String)
   case FailsChildAgeRequirement(message: String)
   case FailsSeniorAgeRequirement(message: String)
+  case InvalidProjectNumber(message: String)
 }

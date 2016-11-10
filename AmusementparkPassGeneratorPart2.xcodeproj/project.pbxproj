@@ -32,6 +32,7 @@
 		27D58A7E1DD4D5180026C9D7 /* AccessGranted.wav in Resources */ = {isa = PBXBuildFile; fileRef = 27D58A7C1DD4D5180026C9D7 /* AccessGranted.wav */; };
 		27D58A861DD4E58E0026C9D7 /* VendorVisit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D58A851DD4E58E0026C9D7 /* VendorVisit.swift */; };
 		27D58A881DD4E8DE0026C9D7 /* TemporaryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D58A871DD4E8DE0026C9D7 /* TemporaryType.swift */; };
+		27D58A8A1DD506450026C9D7 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D58A891DD506450026C9D7 /* Project.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		27D58A7C1DD4D5180026C9D7 /* AccessGranted.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessGranted.wav; sourceTree = "<group>"; };
 		27D58A851DD4E58E0026C9D7 /* VendorVisit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendorVisit.swift; sourceTree = "<group>"; };
 		27D58A871DD4E8DE0026C9D7 /* TemporaryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporaryType.swift; sourceTree = "<group>"; };
+		27D58A891DD506450026C9D7 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 				27D58A601DD4D4E30026C9D7 /* AccessPassError.swift */,
 				27D58A641DD4D4E30026C9D7 /* ContactInformation.swift */,
 				27D58A851DD4E58E0026C9D7 /* VendorVisit.swift */,
+				27D58A891DD506450026C9D7 /* Project.swift */,
 			);
 			name = Helper/ErrorTypes;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				27D58A6D1DD4D4E30026C9D7 /* AccessCardReader.swift in Sources */,
 				27D58A6B1DD4D4E30026C9D7 /* CardReader.swift in Sources */,
 				27D58A711DD4D4E30026C9D7 /* AccessPassGenerator.swift in Sources */,
+				27D58A8A1DD506450026C9D7 /* Project.swift in Sources */,
 				27D58A751DD4D4E30026C9D7 /* GuestType.swift in Sources */,
 				27D58A731DD4D4E30026C9D7 /* Contactable.swift in Sources */,
 				27D58A881DD4E8DE0026C9D7 /* TemporaryType.swift in Sources */,
