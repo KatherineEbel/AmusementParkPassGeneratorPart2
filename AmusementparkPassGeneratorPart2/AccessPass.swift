@@ -8,6 +8,7 @@
 
 import Foundation
 
+fileprivate let seniorAge: Double = 65
 
 // AccessPass struct is located in the AccessPassGenerator class
 extension AccessPassGenerator.AccessPass {
@@ -74,22 +75,24 @@ extension AccessPassGenerator.AccessPass {
   // checks birthdate for age verifiable passes returns true if meets requirements
   var isVerified: Bool {
     if type is AgeVerifiable && type is GuestType {
-    switch type as! GuestType {
-      case .freeChild(birthdate: let date):
-          do {
-            let verified = try birthDate(dateString: date, meetsRequirement: maxChildAge)
-            return verified
-          } catch AccessPassError.FailsChildAgeRequirement(message: let message) {
-            print(message)
-          } catch AccessPassError.InvalidDateFormat(message: let message) {
-            print(message)
-          } catch let error {
-            print("\(error)")
-          }
-      default: break
+      do {
+        let verified: Bool
+        switch type as! GuestType {
+          case .freeChild(birthdate: let date):
+            verified = try isValidChildAge(dateString: date)
+          case .senior(birthdate: let date, contactInfo: _):
+            verified = try isValidSeniorAge(dateString: date)
+          default:
+            return false
+        }
+        return verified
+      } catch AccessPassError.FailsChildAgeRequirement(message: let message) {
+          print(message)
+      } catch AccessPassError.InvalidDateFormat(message: let message) {
+          print(message)
+      } catch let error {
+          print("\(error)")
       }
-    } else {
-      return false
     }
     return false
   }

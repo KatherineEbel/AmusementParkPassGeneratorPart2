@@ -30,6 +30,8 @@
 		27D58A7A1DD4D4E30026C9D7 /* RideAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D58A6A1DD4D4E30026C9D7 /* RideAccess.swift */; };
 		27D58A7D1DD4D5180026C9D7 /* AccessDenied.wav in Resources */ = {isa = PBXBuildFile; fileRef = 27D58A7B1DD4D5180026C9D7 /* AccessDenied.wav */; };
 		27D58A7E1DD4D5180026C9D7 /* AccessGranted.wav in Resources */ = {isa = PBXBuildFile; fileRef = 27D58A7C1DD4D5180026C9D7 /* AccessGranted.wav */; };
+		27D58A861DD4E58E0026C9D7 /* VendorVisit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D58A851DD4E58E0026C9D7 /* VendorVisit.swift */; };
+		27D58A881DD4E8DE0026C9D7 /* TemporaryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D58A871DD4E8DE0026C9D7 /* TemporaryType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		27D58A6A1DD4D4E30026C9D7 /* RideAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideAccess.swift; sourceTree = "<group>"; };
 		27D58A7B1DD4D5180026C9D7 /* AccessDenied.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessDenied.wav; sourceTree = "<group>"; };
 		27D58A7C1DD4D5180026C9D7 /* AccessGranted.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AccessGranted.wav; sourceTree = "<group>"; };
+		27D58A851DD4E58E0026C9D7 /* VendorVisit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendorVisit.swift; sourceTree = "<group>"; };
+		27D58A871DD4E8DE0026C9D7 /* TemporaryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporaryType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,7 @@
 			children = (
 				27D58A601DD4D4E30026C9D7 /* AccessPassError.swift */,
 				27D58A641DD4D4E30026C9D7 /* ContactInformation.swift */,
+				27D58A851DD4E58E0026C9D7 /* VendorVisit.swift */,
 			);
 			name = Helper/ErrorTypes;
 			sourceTree = "<group>";
@@ -162,6 +167,7 @@
 				27D58A651DD4D4E30026C9D7 /* GuestType.swift */,
 				27D58A661DD4D4E30026C9D7 /* HourlyEmployeeType.swift */,
 				27D58A671DD4D4E30026C9D7 /* ManagerType.swift */,
+				27D58A871DD4E8DE0026C9D7 /* TemporaryType.swift */,
 			);
 			name = EntrantTypes;
 			sourceTree = "<group>";
@@ -248,7 +254,9 @@
 				27D58A711DD4D4E30026C9D7 /* AccessPassGenerator.swift in Sources */,
 				27D58A751DD4D4E30026C9D7 /* GuestType.swift in Sources */,
 				27D58A731DD4D4E30026C9D7 /* Contactable.swift in Sources */,
+				27D58A881DD4E8DE0026C9D7 /* TemporaryType.swift in Sources */,
 				27D58A781DD4D4E30026C9D7 /* ParkEntrant.swift in Sources */,
+				27D58A861DD4E58E0026C9D7 /* VendorVisit.swift in Sources */,
 				27D58A6F1DD4D4E30026C9D7 /* AccessPass.swift in Sources */,
 				27D58A701DD4D4E30026C9D7 /* AccessPassError.swift in Sources */,
 				27D58A6E1DD4D4E30026C9D7 /* PassType.swift in Sources */,

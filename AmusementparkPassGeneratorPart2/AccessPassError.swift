@@ -15,4 +15,5 @@ enum AccessPassError: Error {
   case InvalidContactInfoProvided(message: String)
   case InvalidDateFormat(message: String)
   case FailsChildAgeRequirement(message: String)
+  case FailsSeniorAgeRequirement(message: String)
 }

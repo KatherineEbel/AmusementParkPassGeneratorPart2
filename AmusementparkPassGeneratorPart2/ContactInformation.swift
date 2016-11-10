@@ -11,14 +11,23 @@ import Foundation
 struct ContactInformation {
   var firstName: String
   var lastName: String
-  var streetAddress: String
-  var city: String
-  var state: String
-  var zipCode: String
+  var streetAddress: String?
+  var city: String?
+  var state: String?
+  var zipCode: String?
 }
 
 
 extension ContactInformation {
+  init(firstName: String, lastName: String) {
+    self.firstName = firstName
+    self.lastName = lastName
+    self.streetAddress = nil
+    self.city = nil
+    self.state = nil
+    self.zipCode = nil
+  }
+  
   init?(withDictionary info: [String: String]) {
     do {
       if let firstName = info["firstName"], let lastName = info["lastName"],

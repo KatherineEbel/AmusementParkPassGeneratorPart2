@@ -52,6 +52,15 @@ final class AccessPassGenerator {
         } else {
           return AccessPass(type: GuestType.classic)
         }
+    case .senior(birthdate: let date, contactInfo: let info):
+      let pass = AccessPass(type: GuestType.senior(birthdate: date, contactInfo: info))
+        if pass.isVerified {
+           return pass
+        } else {
+          return AccessPass(type: GuestType.classic)
+        }
+    case .seasonPass(let contactInfo):
+      return AccessPass(type: GuestType.seasonPass(contactInfo))
     }
   }
 }

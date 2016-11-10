@@ -10,12 +10,15 @@ import Foundation
 
 // date format must be "yyyy-MM-dd"
 typealias BirthDate = String
+fileprivate let seniorAge: TimeInterval = 65
 
 // Currently only GuestTypes are AgeVerifiable
 protocol AgeVerifiable {
   var dateFormatter: DateFormatter { get }
   func years(fromSeconds seconds: TimeInterval) -> TimeInterval
-  func birthDate(dateString: String, meetsRequirement age: Double) throws -> Bool
+  func ageFrom(dateString string: BirthDate) throws -> TimeInterval
+  func isValidChildAge(dateString string: BirthDate) throws -> Bool
+  func isValidSeniorAge(dateString string: BirthDate) throws -> Bool
 }
 
 extension AgeVerifiable {
@@ -34,16 +37,32 @@ extension AgeVerifiable {
     return seconds / numSecInYear
   }
   
-  func birthDate(dateString: BirthDate, meetsRequirement age: Double) throws -> Bool {
+  func ageFrom(dateString string: BirthDate) throws -> TimeInterval {
     let today = Date()
-    guard let birthdate = dateFormatter.date(from: dateString) else {
+    guard let birthdate = dateFormatter.date(from: string) else {
       throw AccessPassError.InvalidDateFormat(message: "Please enter date in format \"yyyy-mm-dd\"")
     }
     let timeInterval = today.timeIntervalSince(birthdate)
-    let entrantAge = years(fromSeconds: timeInterval)
-    guard entrantAge < age else {
-      throw AccessPassError.FailsChildAgeRequirement(message: "Child does not meet age requirements for a free child pass\nPass converted to Classic Pass")
+    return timeInterval
+  }
+  
+  func isValidChildAge(dateString string: BirthDate) throws -> Bool {
+    do {
+      let age = try ageFrom(dateString: string)
+      guard age < 5 else {
+        throw AccessPassError.FailsChildAgeRequirement(message: "Child does not meet age requirements for a free child pass\nPass converted to Classic Pass")
+      }
+      return age < 5
     }
-    return years(fromSeconds: timeInterval) < age
+  }
+  
+  func isValidSeniorAge(dateString string: BirthDate) throws -> Bool {
+    do {
+      let age = try ageFrom(dateString: string)
+      guard age >= seniorAge else {
+        throw AccessPassError.FailsSeniorAgeRequirement(message: "Guest does not meet age requirements for a Senior Pass.\nPass converted to Classic Pass")
+      }
+      return age >= seniorAge
+    }
   }
 }

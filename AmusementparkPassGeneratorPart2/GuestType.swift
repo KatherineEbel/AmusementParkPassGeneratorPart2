@@ -10,20 +10,25 @@ import Foundation
 
 private let vipFoodDiscount: Percent = 10
 private let vipMerchandiseDicount: Percent = 20
+private let seniorMerchandiseDiscount: Percent = 10
 
 enum GuestType: ParkEntrant, AgeVerifiable {
   case classic
   case VIP
   case freeChild(birthdate: BirthDate)
+  case senior(birthdate: BirthDate, contactInfo: ContactInformation)
+  case seasonPass(ContactInformation)
 }
 
 extension GuestType {
   // returns a named tuple for each GuestType case (accessed by discounts.food, discounts.merchandise)
   var discounts: (food: Percent, merchandise: Percent) {
     let foodDiscount = DiscountType.food(vipFoodDiscount).discount
-    let merchandiseDiscount = DiscountType.merchandise(vipMerchandiseDicount).discount
+    let largeMerchandiseDiscount = DiscountType.merchandise(vipMerchandiseDicount).discount
+    let smallMerchandiseDiscount = DiscountType.merchandise(seniorMerchandiseDiscount).discount
     switch self {
-    case .VIP: return (foodDiscount, merchandiseDiscount)
+    case .VIP, .seasonPass: return (foodDiscount, largeMerchandiseDiscount)
+    case .senior: return (foodDiscount, smallMerchandiseDiscount)
     default:
       return (0, 0)
     }
@@ -32,7 +37,7 @@ extension GuestType {
   // returns a named tuple for each GuestType case (accessed by rideAccess.allRides, rideAccess.skipsQueues)
   var rideAccess: (allRides: Bool, skipsQueues: Bool) {
     switch self {
-      case .VIP:
+      case .VIP, .seasonPass, .senior:
         let allRides = RideAccess.allRides(true).access
         let skipsQueues = RideAccess.skipsQueues(true).access
         return (allRides, skipsQueues)
