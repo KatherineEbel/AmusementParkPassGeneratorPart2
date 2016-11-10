@@ -83,13 +83,13 @@ final class AccessPassGenerator {
   
   private func pass(forTempEntrant entrant: TemporaryType) throws -> AccessPass {
     switch entrant {
-      case .contractEmployee(projectNumber: let projectNumber):
+      case .contractEmployee(projectNumber: let employeeInfo):
+        let projectNumber = employeeInfo.projectNumber
         if let project = (openProjects.filter { $0.identificationNumber == projectNumber }).first {
           return AccessPass(type: TemporaryType.contractEmployee(projectNumber: project.identificationNumber, accessAreas: project.accessAreas))
         } else {
           throw AccessPassError.InvalidProjectNumber(message: "No project found with that access number, please double check entry.")
         }
-        
       case .vendor(birthdate: let date, dateOfVisit: let visitDate):
         return createPass(forEntrant: TemporaryType.vendor(birthdate: date, dateOfVisit: visitDate))
     }
