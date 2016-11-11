@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		278D2ED21DD5E59800E058D0 /* ContractEmployeeInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278D2ED11DD5E59800E058D0 /* ContractEmployeeInformation.swift */; };
+		278D2ED41DD626B400E058D0 /* Vendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278D2ED31DD626B400E058D0 /* Vendor.swift */; };
 		27D58A481DD4D4650026C9D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D58A471DD4D4650026C9D7 /* AppDelegate.swift */; };
 		27D58A4A1DD4D4650026C9D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D58A491DD4D4650026C9D7 /* ViewController.swift */; };
 		27D58A4F1DD4D4650026C9D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27D58A4E1DD4D4650026C9D7 /* Assets.xcassets */; };
@@ -36,6 +38,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		278D2ED11DD5E59800E058D0 /* ContractEmployeeInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractEmployeeInformation.swift; sourceTree = "<group>"; };
+		278D2ED31DD626B400E058D0 /* Vendor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vendor.swift; sourceTree = "<group>"; };
 		27D58A441DD4D4650026C9D7 /* AmusementparkPassGeneratorPart2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmusementparkPassGeneratorPart2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D58A471DD4D4650026C9D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27D58A491DD4D4650026C9D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 				27D58A641DD4D4E30026C9D7 /* ContactInformation.swift */,
 				27D58A851DD4E58E0026C9D7 /* VendorVisit.swift */,
 				27D58A891DD506450026C9D7 /* Project.swift */,
+				278D2ED11DD5E59800E058D0 /* ContractEmployeeInformation.swift */,
+				278D2ED31DD626B400E058D0 /* Vendor.swift */,
 			);
 			name = Helper/ErrorTypes;
 			sourceTree = "<group>";
@@ -256,6 +262,7 @@
 				27D58A6B1DD4D4E30026C9D7 /* CardReader.swift in Sources */,
 				27D58A711DD4D4E30026C9D7 /* AccessPassGenerator.swift in Sources */,
 				27D58A8A1DD506450026C9D7 /* Project.swift in Sources */,
+				278D2ED21DD5E59800E058D0 /* ContractEmployeeInformation.swift in Sources */,
 				27D58A751DD4D4E30026C9D7 /* GuestType.swift in Sources */,
 				27D58A731DD4D4E30026C9D7 /* Contactable.swift in Sources */,
 				27D58A881DD4E8DE0026C9D7 /* TemporaryType.swift in Sources */,
@@ -266,6 +273,7 @@
 				27D58A6E1DD4D4E30026C9D7 /* PassType.swift in Sources */,
 				27D58A721DD4D4E30026C9D7 /* AgeVerifiable.swift in Sources */,
 				27D58A4A1DD4D4650026C9D7 /* ViewController.swift in Sources */,
+				278D2ED41DD626B400E058D0 /* Vendor.swift in Sources */,
 				27D58A7A1DD4D4E30026C9D7 /* RideAccess.swift in Sources */,
 				27D58A741DD4D4E30026C9D7 /* ContactInformation.swift in Sources */,
 				27D58A6C1DD4D4E30026C9D7 /* AccessArea.swift in Sources */,
@@ -426,6 +434,7 @@
 				27D58A581DD4D4650026C9D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

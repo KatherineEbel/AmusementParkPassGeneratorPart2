@@ -9,20 +9,10 @@
 import Foundation
 
 protocol Contactable {
-  var contactInformation: ContactInformation { get }
+  var contactDetails: String { get }
 }
 
 // adds contactDetails property
 extension Contactable {
   // returns nice formatted details for a Contactable park entrant
-  var contactDetails: String {
-    let (firstName, lastName) = (contactInformation.firstName, contactInformation.lastName)
-    if let streetAddress = contactInformation.streetAddress, let city = contactInformation.city,
-      let state = contactInformation.state, let zipCode = contactInformation.zipCode {
-      return "\(firstName) \(lastName) lives at \(streetAddress) \(city) \(state), \(zipCode)"
-    } else {
-      return "\(firstName) \(lastName)"
-    }
-  
-  }
 }

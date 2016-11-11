@@ -37,12 +37,21 @@ extension HourlyEmployeeType {
   
   
   // returns instance of ContactInformation for an instance of manager type
-  // FIXME: Add description getter for contact info for better display
   var contactInformation: ContactInformation {
     switch self {
       case .foodServices(let contactInformation): return contactInformation
       case .maintenance(let contactInformation): return contactInformation
       case .rideServices(let contactInformation): return contactInformation
     }
+  }
+  var contactDetails: String {
+    let (firstName, lastName) = (contactInformation.firstName, contactInformation.lastName)
+    if let streetAddress = contactInformation.streetAddress, let city = contactInformation.city,
+      let state = contactInformation.state, let zipCode = contactInformation.zipCode {
+      return "\(firstName) \(lastName) lives at \(streetAddress) \(city) \(state), \(zipCode)"
+    } else {
+      return "\(firstName) \(lastName)"
+    }
+  
   }
 }

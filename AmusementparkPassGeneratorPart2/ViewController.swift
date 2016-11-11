@@ -12,7 +12,13 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+    let passGenerator = AccessPassGenerator.passGenerator
+    let cardReader = AccessCardReader.cardReader
+    let info = ContactInformation(firstName: "Kathy", lastName: "Ebel")
+    let seasonPass = passGenerator.createPass(forEntrant: GuestType.seasonPass(info))
+    print(seasonPass)
+    print(cardReader.areaAccess(forPass: seasonPass))
+    print(cardReader.rideAccess(forPass: seasonPass))
   }
 
   override func didReceiveMemoryWarning() {

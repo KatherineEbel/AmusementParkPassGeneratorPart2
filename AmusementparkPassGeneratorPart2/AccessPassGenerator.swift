@@ -18,6 +18,12 @@ final class AccessPassGenerator {
     Project(identificationNumber: 2001, accessAreas: [.office]),
     Project(identificationNumber: 2002, accessAreas: [.kitchen, .maintenance,])
   ]
+  let allowedVendors = [
+    Vendor(companyName: "Acme", accessAreas: [.kitchen]),
+    Vendor(companyName: "Orkin", accessAreas: [.amusement, .rideControl, .kitchen]),
+    Vendor(companyName: "Fedex", accessAreas: [.maintenance, .office]),
+    Vendor(companyName: "NW Electrical", accessAreas: [.kitchen]),
+  ]
   private init() { }
   
   // added AccessPass struct to Pass Generator, so initializer for Access Pass can only
@@ -83,15 +89,19 @@ final class AccessPassGenerator {
   
   private func pass(forTempEntrant entrant: TemporaryType) throws -> AccessPass {
     switch entrant {
-      case .contractEmployee(projectNumber: let employeeInfo):
-        let projectNumber = employeeInfo.projectNumber
+      case .contractEmployee(info: let info, accessAreas: _):
+        let projectNumber = info.projectID
         if let project = (openProjects.filter { $0.identificationNumber == projectNumber }).first {
-          return AccessPass(type: TemporaryType.contractEmployee(projectNumber: project.identificationNumber, accessAreas: project.accessAreas))
+          return AccessPass(type: TemporaryType.contractEmployee(info: info, accessAreas: project.accessAreas))
         } else {
           throw AccessPassError.InvalidProjectNumber(message: "No project found with that access number, please double check entry.")
         }
-      case .vendor(birthdate: let date, dateOfVisit: let visitDate):
-        return createPass(forEntrant: TemporaryType.vendor(birthdate: date, dateOfVisit: visitDate))
+    case .vendor(info: let vendorInfo):
+      if let vendor = (allowedVendors.filter { $0.companyName == vendorInfo.info.companyName }).first {
+        return createPass(forEntrant: TemporaryType.vendor(info: vendorInfo.info, accessAreas: vendor.accessAreas))
+      } else {
+        throw AccessPassError.InvalidVendor(message: "This vendor is not listed in the parks allowed Vendors")
+      }
     }
   }
 }

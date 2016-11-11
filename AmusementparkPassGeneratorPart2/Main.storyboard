@@ -14,7 +14,7 @@
         <!--View Controller-->
         <scene sceneID="lgx-sW-7cY">
             <objects>
-                <viewController id="eey-6G-JNA" sceneMemberID="viewController">
+                <viewController id="eey-6G-JNA" customClass="ViewController" customModule="AmusementparkPassGeneratorPart2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rh6-hi-Qs6"/>
                         <viewControllerLayoutGuide type="bottom" id="SdK-ML-Pb3"/>

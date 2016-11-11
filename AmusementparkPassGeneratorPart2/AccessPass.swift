@@ -67,6 +67,9 @@ extension AccessPassGenerator.AccessPass {
       } else if type is Contactable && type is ManagerType {
         let manager = type as! ManagerType
         return manager.contactDetails
+      } else if type is TemporaryType {
+        let tempType = type as! TemporaryType
+        return tempType.contactDetails
       }
     }
     return "Guest has no contact details"

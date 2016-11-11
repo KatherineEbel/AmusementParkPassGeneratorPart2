@@ -8,18 +8,37 @@
 
 import Foundation
 
-enum TemporaryType: ParkEntrant {
-  case vendor(birthdate: BirthDate, dateOfVisit: String)
-  case contractEmployee(projectNumber: Int, accessAreas: [AccessArea])
+enum TemporaryType: ParkEntrant, Contactable {
+  case vendor(info: VendorVisitInformation, accessAreas: [AccessArea])
+  case contractEmployee(info: ContractEmployeeInformation, accessAreas: [AccessArea])
+  
 }
 
 extension TemporaryType {
   var accessAreas: [AccessArea] {
-    get {
-      return self.accessAreas
+    switch self {
+    case .contractEmployee(info: _, accessAreas: let areas): return areas
+    case .vendor(info: _, accessAreas: let areas): return areas
     }
-    set {
-      accessAreas = newValue
+  }
+  
+  var rideAccess: (allRides: Bool, skipsQueues: Bool) {
+    return (false, false)
+  }
+  // returns instance of ContactInformation for an instance of manager type
+  var contactInformation: Contactable {
+    switch self {
+      case .vendor(info: let info): return info as! Contactable
+      case .contractEmployee(info: let info, accessAreas: _): return info as Contactable
+    }
+  }
+  
+  var contactDetails: String {
+    switch self {
+    case .contractEmployee(info: let contractEmployee):
+      return contractEmployee.info.contactDetails
+    case .vendor(info: let vendorVisit):
+      return vendorVisit.info.contactDetails
     }
   }
 }

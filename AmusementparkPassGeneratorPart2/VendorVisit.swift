@@ -8,8 +8,12 @@
 
 import Foundation
 
-struct VendorVisitInformation {
+struct VendorVisitInformation: Contactable {
   let companyName: String
   let dateOfVisit: String //yyyy-MM-dd
   let dateOfBirth: BirthDate
+  let contactInfo: ContactInformation
+  var contactDetails: String {
+    return "\(contactInfo.firstName) \(contactInfo.lastName) works for \(companyName)"
+  }
 }
