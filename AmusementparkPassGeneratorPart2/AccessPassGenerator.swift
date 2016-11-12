@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias PassID = Int
+
 final class AccessPassGenerator {
   // only way to create a access pass is the singleton passGenerator
   static let passGenerator = AccessPassGenerator()
@@ -29,17 +31,20 @@ final class AccessPassGenerator {
   // added AccessPass struct to Pass Generator, so initializer for Access Pass can only
   // be called by generator
   struct AccessPass: PassType, AgeVerifiable {
+    static var currentPassID: PassID = 1
     let type: ParkEntrant
     let maxChildAge: Double = 5
+    let passID: PassID = AccessPass.currentPassID
     fileprivate init(type: ParkEntrant) {
       self.type = type
+      AccessPass.currentPassID += 1
     }
   }
   
   // the only public access point to create passes
   public func createPass(forEntrant entrant: ParkEntrant) -> AccessPass {
-    if entrant is AgeVerifiable {
-      return pass(forVerifiedEntrant: entrant as! AgeVerifiable) // force cast since has to be AgeVerifiable to get in this block
+    if entrant is GuestType {
+      return pass(forVerifiedEntrant: entrant as! GuestType)
     }
     if entrant is HourlyEmployeeType {
       return AccessPass(type: entrant as! HourlyEmployeeType)
@@ -49,9 +54,13 @@ final class AccessPassGenerator {
     }
     if entrant is TemporaryType {
       do {
-        return try pass(forTempEntrant: entrant as! TemporaryType)
+        let tempPass = try pass(forTempEntrant: entrant as! TemporaryType)
+        return tempPass
       } catch AccessPassError.InvalidProjectNumber(message: let message) {
           print(message)
+        
+      } catch AccessPassError.InvalidVendor(message: let message) {
+        print(message)
       } catch let error {
         print(error)
       }
@@ -63,9 +72,8 @@ final class AccessPassGenerator {
   
   // the only pass that needs to be verified is the free child pass -- since no UI currently present
   // default to displaying message and create classic pass for unverified/ or incorrectly formatted dates
-  private func pass(forVerifiedEntrant entrant: AgeVerifiable) -> AccessPass {
-    let type = entrant as! GuestType
-    switch type {
+  private func pass(forVerifiedEntrant entrant: GuestType) -> AccessPass {
+    switch entrant {
     case .classic: return AccessPass(type: GuestType.classic)
     case .VIP: return AccessPass(type: GuestType.VIP)
     case .freeChild(birthdate: let birthDate):
@@ -89,16 +97,20 @@ final class AccessPassGenerator {
   
   private func pass(forTempEntrant entrant: TemporaryType) throws -> AccessPass {
     switch entrant {
+      // don't pass in access areas for temp types because the park (and therefore pass generator) tracks the open projects
+      // and allowed vendors, and knows what areas they were allowed entry to.
       case .contractEmployee(info: let info, accessAreas: _):
         let projectNumber = info.projectID
-        if let project = (openProjects.filter { $0.identificationNumber == projectNumber }).first {
+        if let project = (openProjects.filter { $0.identificationNumber == projectNumber }).first { // try to find the project id that the contractEmployee has
           return AccessPass(type: TemporaryType.contractEmployee(info: info, accessAreas: project.accessAreas))
         } else {
+          // If park does not know about the project number then refuse to create a pass
           throw AccessPassError.InvalidProjectNumber(message: "No project found with that access number, please double check entry.")
         }
     case .vendor(info: let vendorInfo):
+      // if vendor name is not in allowed vendors don't create pass
       if let vendor = (allowedVendors.filter { $0.companyName == vendorInfo.info.companyName }).first {
-        return createPass(forEntrant: TemporaryType.vendor(info: vendorInfo.info, accessAreas: vendor.accessAreas))
+        return AccessPass(type: TemporaryType.vendor(info: vendorInfo.info, accessAreas: vendor.accessAreas))
       } else {
         throw AccessPassError.InvalidVendor(message: "This vendor is not listed in the parks allowed Vendors")
       }

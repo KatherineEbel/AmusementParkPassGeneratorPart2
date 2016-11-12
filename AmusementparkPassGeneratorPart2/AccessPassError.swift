@@ -18,4 +18,6 @@ enum AccessPassError: Error {
   case FailsSeniorAgeRequirement(message: String)
   case InvalidProjectNumber(message: String)
   case InvalidVendor(message: String)
+  case AccessSoundQueueError(message: String)
+  case DoubleSwipeError(message: String)
 }

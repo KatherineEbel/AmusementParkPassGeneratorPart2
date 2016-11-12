@@ -24,7 +24,7 @@ protocol AgeVerifiable {
 extension AgeVerifiable {
   var dateFormatter: DateFormatter {
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
+    dateFormatter.dateFormat = "MM-dd-yyyy"
     return dateFormatter
   }
   
