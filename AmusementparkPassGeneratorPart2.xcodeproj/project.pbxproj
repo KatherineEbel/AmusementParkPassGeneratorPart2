@@ -11,7 +11,7 @@
 		278D2ED41DD626B400E058D0 /* Vendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278D2ED31DD626B400E058D0 /* Vendor.swift */; };
 		278D2ED61DD74ACC00E058D0 /* AccessSoundCue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278D2ED51DD74ACC00E058D0 /* AccessSoundCue.swift */; };
 		27D58A481DD4D4650026C9D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D58A471DD4D4650026C9D7 /* AppDelegate.swift */; };
-		27D58A4A1DD4D4650026C9D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D58A491DD4D4650026C9D7 /* ViewController.swift */; };
+		27D58A4A1DD4D4650026C9D7 /* CreatePassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D58A491DD4D4650026C9D7 /* CreatePassController.swift */; };
 		27D58A4F1DD4D4650026C9D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27D58A4E1DD4D4650026C9D7 /* Assets.xcassets */; };
 		27D58A521DD4D4650026C9D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27D58A501DD4D4650026C9D7 /* LaunchScreen.storyboard */; };
 		27D58A5A1DD4D49D0026C9D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27D58A591DD4D49D0026C9D7 /* Main.storyboard */; };
@@ -44,7 +44,7 @@
 		278D2ED51DD74ACC00E058D0 /* AccessSoundCue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessSoundCue.swift; sourceTree = "<group>"; };
 		27D58A441DD4D4650026C9D7 /* AmusementparkPassGeneratorPart2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmusementparkPassGeneratorPart2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D58A471DD4D4650026C9D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		27D58A491DD4D4650026C9D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		27D58A491DD4D4650026C9D7 /* CreatePassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePassController.swift; sourceTree = "<group>"; };
 		27D58A4E1DD4D4650026C9D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27D58A511DD4D4650026C9D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		27D58A531DD4D4650026C9D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 				27D58A831DD4D5D60026C9D7 /* Helper/ErrorTypes */,
 				27D58A841DD4D5E30026C9D7 /* EntrantTypes */,
 				27D58A471DD4D4650026C9D7 /* AppDelegate.swift */,
-				27D58A491DD4D4650026C9D7 /* ViewController.swift */,
+				27D58A491DD4D4650026C9D7 /* CreatePassController.swift */,
 				27D58A591DD4D49D0026C9D7 /* Main.storyboard */,
 				27D58A4E1DD4D4650026C9D7 /* Assets.xcassets */,
 				27D58A501DD4D4650026C9D7 /* LaunchScreen.storyboard */,
@@ -276,7 +276,7 @@
 				27D58A701DD4D4E30026C9D7 /* AccessPassError.swift in Sources */,
 				27D58A6E1DD4D4E30026C9D7 /* PassType.swift in Sources */,
 				27D58A721DD4D4E30026C9D7 /* AgeVerifiable.swift in Sources */,
-				27D58A4A1DD4D4650026C9D7 /* ViewController.swift in Sources */,
+				27D58A4A1DD4D4650026C9D7 /* CreatePassController.swift in Sources */,
 				278D2ED41DD626B400E058D0 /* Vendor.swift in Sources */,
 				27D58A7A1DD4D4E30026C9D7 /* RideAccess.swift in Sources */,
 				27D58A741DD4D4E30026C9D7 /* ContactInformation.swift in Sources */,
