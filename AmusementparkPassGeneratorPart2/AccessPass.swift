@@ -46,6 +46,9 @@ extension AccessPassGenerator.AccessPass {
   // not all passes contain contact info so returns optional contact info
   var contactInfo: ContactInformation? {
     switch type {
+    case is GuestType:
+      let guestType = type as! GuestType
+      return guestType.contactInformation
     case is HourlyEmployeeType:
       let employeeType = type as! HourlyEmployeeType
       return employeeType.contactInformation
@@ -70,6 +73,9 @@ extension AccessPassGenerator.AccessPass {
       } else if type is TemporaryType {
         let tempType = type as! TemporaryType
         return tempType.contactDetails
+      } else if type is GuestType {
+        let guestType = type as! GuestType
+        return guestType.contactDetails
       }
     }
     return "Guest has no contact details"
