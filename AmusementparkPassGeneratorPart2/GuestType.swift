@@ -12,7 +12,7 @@ private let vipFoodDiscount: Percent = 10
 private let vipMerchandiseDicount: Percent = 20
 private let seniorMerchandiseDiscount: Percent = 10
 
-enum GuestType: ParkEntrant, AgeVerifiable {
+enum GuestType: ParkEntrant, AgeVerifiable, Contactable {
   case classic
   case VIP
   case freeChild(birthdate: BirthDate)
@@ -44,5 +44,26 @@ extension GuestType {
       default:
         return (true, false)
     }
+  }
+  
+  var contactInformation: ContactInformation? {
+    switch self {
+      case .seasonPass(let information): return information
+      case .senior(birthdate: _, contactInfo: let information): return information
+      default: return nil
+    }
+  }
+  
+  var contactDetails: String {
+    var details = ""
+    if let information = self.contactInformation {
+      let (firstName, lastName) = (information.firstName, information.lastName)
+      details += "\(firstName) \(lastName)"
+      if let streetAddress = information.streetAddress, let city = information.city,
+        let state = information.state, let zipcode = information.zipCode {
+        details += " lives at \(streetAddress) \(city), \(state), \(zipcode)"
+      }
+    }
+    return details
   }
 }
