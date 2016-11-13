@@ -21,6 +21,11 @@ enum GuestType: ParkEntrant, AgeVerifiable, Contactable {
 }
 
 extension GuestType {
+  
+  static var allTypes: [String] {
+    return ["Classic", "VIP", "Free Child", "Senior", "Season Pass"]
+  }
+  
   // returns a named tuple for each GuestType case (accessed by discounts.food, discounts.merchandise)
   var discounts: (food: Percent, merchandise: Percent) {
     let foodDiscount = DiscountType.food(vipFoodDiscount).discount

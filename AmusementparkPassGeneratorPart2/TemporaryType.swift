@@ -15,6 +15,7 @@ enum TemporaryType: ParkEntrant, Contactable {
 }
 
 extension TemporaryType {
+  
   var accessAreas: [AccessArea] {
     switch self {
     case .contractEmployee(info: _, accessAreas: let areas): return areas

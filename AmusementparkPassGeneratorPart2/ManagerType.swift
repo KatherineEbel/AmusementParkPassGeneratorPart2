@@ -17,6 +17,11 @@ enum ManagerType: ParkEntrant, Contactable {
 }
 
 extension ManagerType {
+  
+  static var allTypes: [String] {
+    return ["General"]
+  }
+  
   // returns a named tuple for each GuestType case (accessed by discounts.food, discounts.merchandise)
   var discounts: (food: Percent, merchandise: Percent) {
     let foodDiscount = DiscountType.food(managerFoodDiscount).discount

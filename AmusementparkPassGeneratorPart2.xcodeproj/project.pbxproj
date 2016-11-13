@@ -10,6 +10,9 @@
 		278D2ED21DD5E59800E058D0 /* ContractEmployeeInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278D2ED11DD5E59800E058D0 /* ContractEmployeeInformation.swift */; };
 		278D2ED41DD626B400E058D0 /* Vendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278D2ED31DD626B400E058D0 /* Vendor.swift */; };
 		278D2ED61DD74ACC00E058D0 /* AccessSoundCue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278D2ED51DD74ACC00E058D0 /* AccessSoundCue.swift */; };
+		278D2EE21DD893B500E058D0 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278D2EE11DD893B500E058D0 /* RoundedButton.swift */; };
+		278D2EE41DD8A78E00E058D0 /* EntrantTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278D2EE31DD8A78E00E058D0 /* EntrantTypeButton.swift */; };
+		278D2EE61DD8B5EE00E058D0 /* EntrantType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278D2EE51DD8B5EE00E058D0 /* EntrantType.swift */; };
 		27D58A481DD4D4650026C9D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D58A471DD4D4650026C9D7 /* AppDelegate.swift */; };
 		27D58A4A1DD4D4650026C9D7 /* CreatePassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D58A491DD4D4650026C9D7 /* CreatePassController.swift */; };
 		27D58A4F1DD4D4650026C9D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27D58A4E1DD4D4650026C9D7 /* Assets.xcassets */; };
@@ -42,6 +45,9 @@
 		278D2ED11DD5E59800E058D0 /* ContractEmployeeInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractEmployeeInformation.swift; sourceTree = "<group>"; };
 		278D2ED31DD626B400E058D0 /* Vendor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vendor.swift; sourceTree = "<group>"; };
 		278D2ED51DD74ACC00E058D0 /* AccessSoundCue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessSoundCue.swift; sourceTree = "<group>"; };
+		278D2EE11DD893B500E058D0 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		278D2EE31DD8A78E00E058D0 /* EntrantTypeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntrantTypeButton.swift; sourceTree = "<group>"; };
+		278D2EE51DD8B5EE00E058D0 /* EntrantType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntrantType.swift; sourceTree = "<group>"; };
 		27D58A441DD4D4650026C9D7 /* AmusementparkPassGeneratorPart2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmusementparkPassGeneratorPart2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D58A471DD4D4650026C9D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27D58A491DD4D4650026C9D7 /* CreatePassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePassController.swift; sourceTree = "<group>"; };
@@ -83,6 +89,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		278D2EDD1DD88B5F00E058D0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				27D58A491DD4D4650026C9D7 /* CreatePassController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		278D2EDE1DD88B7400E058D0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				27D58A821DD4D5BF0026C9D7 /* AccessCardTypes */,
+				27D58A841DD4D5E30026C9D7 /* EntrantTypes */,
+				27D58A831DD4D5D60026C9D7 /* Helper/ErrorTypes */,
+				27D58A811DD4D5920026C9D7 /* ParkEntitlements */,
+				27D58A801DD4D5820026C9D7 /* Protocols */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		27D58A3B1DD4D4650026C9D7 = {
 			isa = PBXGroup;
 			children = (
@@ -102,18 +128,16 @@
 		27D58A461DD4D4650026C9D7 /* AmusementparkPassGeneratorPart2 */ = {
 			isa = PBXGroup;
 			children = (
+				278D2EDE1DD88B7400E058D0 /* Model */,
 				27D58A7F1DD4D51E0026C9D7 /* Sounds */,
-				27D58A801DD4D5820026C9D7 /* Protocols */,
-				27D58A811DD4D5920026C9D7 /* ParkEntitlements */,
-				27D58A821DD4D5BF0026C9D7 /* AccessCardTypes */,
-				27D58A831DD4D5D60026C9D7 /* Helper/ErrorTypes */,
-				27D58A841DD4D5E30026C9D7 /* EntrantTypes */,
 				27D58A471DD4D4650026C9D7 /* AppDelegate.swift */,
-				27D58A491DD4D4650026C9D7 /* CreatePassController.swift */,
+				278D2EDD1DD88B5F00E058D0 /* Controllers */,
 				27D58A591DD4D49D0026C9D7 /* Main.storyboard */,
 				27D58A4E1DD4D4650026C9D7 /* Assets.xcassets */,
 				27D58A501DD4D4650026C9D7 /* LaunchScreen.storyboard */,
 				27D58A531DD4D4650026C9D7 /* Info.plist */,
+				278D2EE11DD893B500E058D0 /* RoundedButton.swift */,
+				278D2EE31DD8A78E00E058D0 /* EntrantTypeButton.swift */,
 			);
 			path = AmusementparkPassGeneratorPart2;
 			sourceTree = "<group>";
@@ -180,6 +204,7 @@
 				27D58A661DD4D4E30026C9D7 /* HourlyEmployeeType.swift */,
 				27D58A671DD4D4E30026C9D7 /* ManagerType.swift */,
 				27D58A871DD4E8DE0026C9D7 /* TemporaryType.swift */,
+				278D2EE51DD8B5EE00E058D0 /* EntrantType.swift */,
 			);
 			name = EntrantTypes;
 			sourceTree = "<group>";
@@ -263,6 +288,7 @@
 				27D58A761DD4D4E30026C9D7 /* HourlyEmployeeType.swift in Sources */,
 				27D58A6D1DD4D4E30026C9D7 /* AccessCardReader.swift in Sources */,
 				27D58A6B1DD4D4E30026C9D7 /* CardReader.swift in Sources */,
+				278D2EE41DD8A78E00E058D0 /* EntrantTypeButton.swift in Sources */,
 				27D58A711DD4D4E30026C9D7 /* AccessPassGenerator.swift in Sources */,
 				27D58A8A1DD506450026C9D7 /* Project.swift in Sources */,
 				278D2ED21DD5E59800E058D0 /* ContractEmployeeInformation.swift in Sources */,
@@ -274,6 +300,7 @@
 				27D58A861DD4E58E0026C9D7 /* VendorVisit.swift in Sources */,
 				27D58A6F1DD4D4E30026C9D7 /* AccessPass.swift in Sources */,
 				27D58A701DD4D4E30026C9D7 /* AccessPassError.swift in Sources */,
+				278D2EE61DD8B5EE00E058D0 /* EntrantType.swift in Sources */,
 				27D58A6E1DD4D4E30026C9D7 /* PassType.swift in Sources */,
 				27D58A721DD4D4E30026C9D7 /* AgeVerifiable.swift in Sources */,
 				27D58A4A1DD4D4650026C9D7 /* CreatePassController.swift in Sources */,
@@ -283,6 +310,7 @@
 				27D58A6C1DD4D4E30026C9D7 /* AccessArea.swift in Sources */,
 				27D58A481DD4D4650026C9D7 /* AppDelegate.swift in Sources */,
 				27D58A771DD4D4E30026C9D7 /* ManagerType.swift in Sources */,
+				278D2EE21DD893B500E058D0 /* RoundedButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

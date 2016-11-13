@@ -13,7 +13,7 @@ typealias PassID = Int
 final class AccessPassGenerator {
   // only way to create a access pass is the singleton passGenerator
   static let passGenerator = AccessPassGenerator()
-  private let openProjects = [
+  let openProjects = [
     Project(identificationNumber: 1001, accessAreas: [.amusement, .rideControl]),
     Project(identificationNumber: 1002, accessAreas: [.amusement, .rideControl, .maintenance]),
     Project(identificationNumber: 1003, accessAreas: [.amusement, .rideControl, .kitchen, .maintenance, .office]),

@@ -14,7 +14,7 @@
         <!--Create Pass Controller-->
         <scene sceneID="lgx-sW-7cY">
             <objects>
-                <viewController id="eey-6G-JNA" customClass="CreatePassController" sceneMemberID="viewController">
+                <viewController id="eey-6G-JNA" customClass="CreatePassController" customModule="AmusementparkPassGeneratorPart2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rh6-hi-Qs6"/>
                         <viewControllerLayoutGuide type="bottom" id="SdK-ML-Pb3"/>
@@ -29,36 +29,58 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s64-HI-M0Y">
                                         <rect key="frame" x="0.0" y="0.0" width="768" height="57"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="22N-6s-AqJ">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="22N-6s-AqJ" userLabel="EntrantTypes">
                                                 <rect key="frame" x="20" y="22" width="728" height="12"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gn2-TQ-HT0">
-                                                        <rect key="frame" x="0.0" y="0.0" width="182" height="12"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="145.5" height="12"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                         <state key="normal" title="Guest">
                                                             <color key="titleColor" red="0.81960784313725488" green="0.75686274509803919" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TyP-AH-oPs">
-                                                        <rect key="frame" x="182" y="0.0" width="182" height="12"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                                        <state key="normal" title="Employee">
-                                                            <color key="titleColor" red="0.81960784313725488" green="0.75686274509803919" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIK-fE-OLk">
-                                                        <rect key="frame" x="364" y="0.0" width="182" height="12"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                                        <state key="normal" title="Manager">
-                                                            <color key="titleColor" red="0.81960784313725488" green="0.75686274509803919" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
+                                                        <connections>
+                                                            <action selector="selectEntrantType:" destination="eey-6G-JNA" eventType="touchUpInside" id="af8-uw-IZq"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZJ-mH-wip">
-                                                        <rect key="frame" x="546" y="0.0" width="182" height="12"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                        <rect key="frame" x="145.5" y="0.0" width="145.5" height="12"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                         <state key="normal" title="Vendor">
                                                             <color key="titleColor" red="0.81960784313725488" green="0.75686274509803919" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="selectEntrantType:" destination="eey-6G-JNA" eventType="touchUpInside" id="vYo-dO-TLS"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TyP-AH-oPs">
+                                                        <rect key="frame" x="291" y="0.0" width="146" height="12"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                        <state key="normal" title="Employee">
+                                                            <color key="titleColor" red="0.81960784313725488" green="0.75686274509803919" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="selectEntrantType:" destination="eey-6G-JNA" eventType="touchUpInside" id="hd6-pp-Ym1"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OH5-Gy-mIE">
+                                                        <rect key="frame" x="437" y="0.0" width="145.5" height="12"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                        <state key="normal" title="Contractor">
+                                                            <color key="titleColor" red="0.81960784310000001" green="0.75686274509999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="selectEntrantType:" destination="eey-6G-JNA" eventType="touchUpInside" id="tVR-0E-aHB"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIK-fE-OLk">
+                                                        <rect key="frame" x="582.5" y="0.0" width="145.5" height="12"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                        <state key="normal" title="Manager">
+                                                            <color key="titleColor" red="0.81960784313725488" green="0.75686274509803919" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="selectEntrantType:" destination="eey-6G-JNA" eventType="touchUpInside" id="aJx-6x-xca"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -74,38 +96,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sBW-hu-L1F">
                                         <rect key="frame" x="0.0" y="57" width="768" height="43"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="HL3-IV-kQA">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="HL3-IV-kQA" userLabel="EntrantSubTypes">
                                                 <rect key="frame" x="40" y="14" width="708" height="15"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTj-2O-y96">
-                                                        <rect key="frame" x="0.0" y="0.0" width="177" height="15"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                        <state key="normal" title="Child">
-                                                            <color key="titleColor" red="0.81960784310000001" green="0.75686274509999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPn-fK-T6f">
-                                                        <rect key="frame" x="177" y="0.0" width="177" height="15"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                        <state key="normal" title="Adult">
-                                                            <color key="titleColor" red="0.81960784310000001" green="0.75686274509999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4YZ-YR-PYZ">
-                                                        <rect key="frame" x="354" y="0.0" width="177" height="15"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                        <state key="normal" title="Senior">
-                                                            <color key="titleColor" red="0.81960784310000001" green="0.75686274509999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lva-xl-p6Z">
-                                                        <rect key="frame" x="531" y="0.0" width="177" height="15"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                        <state key="normal" title="VIP">
-                                                            <color key="titleColor" red="0.81960784310000001" green="0.75686274509999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                    </button>
-                                                </subviews>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.2470588235" green="0.21176470589999999" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -381,14 +373,14 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Le2-uz-ZI3" userLabel="Footer">
                                         <rect key="frame" x="0.0" y="649" width="688" height="41"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBx-Ki-gRf">
+                                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBx-Ki-gRf" customClass="RoundedButton" customModule="AmusementparkPassGeneratorPart2" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="319" height="41"/>
                                                 <color key="backgroundColor" red="0.34509803919999998" green="0.58431372550000005" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <state key="normal" title="Generate Pass"/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zox-T2-7qs">
+                                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zox-T2-7qs" customClass="RoundedButton" customModule="AmusementparkPassGeneratorPart2" customModuleProvider="target">
                                                 <rect key="frame" x="369" y="0.0" width="319" height="41"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
@@ -410,6 +402,12 @@
                             <constraint firstItem="pGW-Uf-9qQ" firstAttribute="top" secondItem="J0a-Y4-UNG" secondAttribute="top" id="vhu-I4-STW"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="entrantSubTypeStackView" destination="HL3-IV-kQA" id="xGr-ZI-cnr"/>
+                        <outlet property="entrantTypeStackView" destination="22N-6s-AqJ" id="mIJ-Nf-11R"/>
+                        <outlet property="generatePassButton" destination="pBx-Ki-gRf" id="pBD-HY-c9m"/>
+                        <outlet property="populateDataButton" destination="Zox-T2-7qs" id="FOb-Gc-pmX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G9f-uR-Xnk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

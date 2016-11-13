@@ -19,6 +19,19 @@ enum HourlyEmployeeType: ParkEntrant, Contactable {
 }
 
 extension HourlyEmployeeType {
+  
+//  var rawValue: String {
+//    switch self {
+//      case .foodServices: return "Food Services"
+//      case .rideServices: return "Ride Services"
+//      case .maintenance: return "Maintenance"
+//    }
+//  }
+  
+  static var allTypes: [String] {
+    return ["Food Services", "Ride Services", "Maintenance"]
+  }
+  
   // returns array of areas that each type has access to
   var accessAreas: [AccessArea] {
     switch self {
