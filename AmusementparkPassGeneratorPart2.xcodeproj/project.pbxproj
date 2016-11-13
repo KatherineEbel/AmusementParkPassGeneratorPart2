@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2748CA621DD9017700E790CA /* InformationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2748CA611DD9017700E790CA /* InformationField.swift */; };
 		278D2ED21DD5E59800E058D0 /* ContractEmployeeInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278D2ED11DD5E59800E058D0 /* ContractEmployeeInformation.swift */; };
 		278D2ED41DD626B400E058D0 /* Vendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278D2ED31DD626B400E058D0 /* Vendor.swift */; };
 		278D2ED61DD74ACC00E058D0 /* AccessSoundCue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278D2ED51DD74ACC00E058D0 /* AccessSoundCue.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2748CA611DD9017700E790CA /* InformationField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationField.swift; sourceTree = "<group>"; };
 		278D2ED11DD5E59800E058D0 /* ContractEmployeeInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractEmployeeInformation.swift; sourceTree = "<group>"; };
 		278D2ED31DD626B400E058D0 /* Vendor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vendor.swift; sourceTree = "<group>"; };
 		278D2ED51DD74ACC00E058D0 /* AccessSoundCue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessSoundCue.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				278D2ED11DD5E59800E058D0 /* ContractEmployeeInformation.swift */,
 				278D2ED31DD626B400E058D0 /* Vendor.swift */,
 				278D2ED51DD74ACC00E058D0 /* AccessSoundCue.swift */,
+				2748CA611DD9017700E790CA /* InformationField.swift */,
 			);
 			name = Helper/ErrorTypes;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				278D2ED61DD74ACC00E058D0 /* AccessSoundCue.swift in Sources */,
 				27D58A751DD4D4E30026C9D7 /* GuestType.swift in Sources */,
 				27D58A731DD4D4E30026C9D7 /* Contactable.swift in Sources */,
+				2748CA621DD9017700E790CA /* InformationField.swift in Sources */,
 				27D58A881DD4E8DE0026C9D7 /* TemporaryType.swift in Sources */,
 				27D58A781DD4D4E30026C9D7 /* ParkEntrant.swift in Sources */,
 				27D58A861DD4E58E0026C9D7 /* VendorVisit.swift in Sources */,

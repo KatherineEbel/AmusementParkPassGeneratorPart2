@@ -26,6 +26,27 @@ extension GuestType {
     return ["Classic", "VIP", "Free Child", "Senior", "Season Pass"]
   }
   
+  var rawValue: String {
+    switch self {
+    case .classic: return "Classic"
+    case .VIP: return "VIP"
+    case .freeChild: return "Free Child"
+    case .senior: return "Senior"
+    case .seasonPass: return "Season Pass"
+    }
+  }
+  
+  static func getRequiredFields(fromTitle title: String) -> [InformationField] {
+    switch title {
+      case "Classic", "VIP": return []
+      case "Free Child": return [.dateOfBirth]
+      case "Senior": return [.dateOfBirth, .firstName, .lastName]
+      case "Season Pass":
+        return [.firstName, .lastName, .streetAddress, .city, .state, .zipCode]
+      default: return []
+    }
+  }
+  
   // returns a named tuple for each GuestType case (accessed by discounts.food, discounts.merchandise)
   var discounts: (food: Percent, merchandise: Percent) {
     let foodDiscount = DiscountType.food(vipFoodDiscount).discount

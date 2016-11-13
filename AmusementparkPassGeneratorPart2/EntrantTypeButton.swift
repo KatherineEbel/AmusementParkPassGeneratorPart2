@@ -10,6 +10,9 @@ import UIKit
 
 class EntrantTypeButton: UIButton {
   
+  let type: ParkEntrant? = nil
+  
+  
   override func awakeFromNib() {
     tintColor = UIColor(red: 209/255.0, green: 193/255.0, blue: 225/255.0, alpha: 1.0)
   }
