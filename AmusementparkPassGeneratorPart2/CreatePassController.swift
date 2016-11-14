@@ -58,15 +58,19 @@ class CreatePassController: UIViewController {
   }
   
   func enableFieldsForSubType(_ sender: UIButton) {
+    disableTextFields()
     let title = sender.currentTitle!
     let fields: [Tag]
     switch selectedEntrantType {
     case .Guest:
       fields = GuestType.getRequiredFields(fromTitle: title).map { $0.rawValue }
       enableTextFields(withTags: fields)
-      print(fields)
-    default:
-      break
+    case .Employee, .Manager:
+      fields = HourlyEmployeeType.getRequiredFields().map { $0.rawValue }
+      enableTextFields(withTags: fields)
+    case .Contractor, .Vendor:
+      fields = TemporaryType.getRequiredFields(fromTitle: title).map { $0.rawValue }
+      enableTextFields(withTags: fields)
     }
   }
   

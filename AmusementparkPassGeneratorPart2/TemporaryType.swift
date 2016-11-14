@@ -16,6 +16,13 @@ enum TemporaryType: ParkEntrant, Contactable {
 
 extension TemporaryType {
   
+  static func getRequiredFields(fromTitle title: String) -> [InformationField] {
+    if let _ = Int(title) {
+      return [.projectNumber, .firstName, .lastName, .streetAddress, .city, .state, .zipCode]
+    } else {
+      return [.dateOfBirth, .dateOfVisit, .firstName, .lastName, .companyName]
+    }
+  }
   var accessAreas: [AccessArea] {
     switch self {
     case .contractEmployee(info: _, accessAreas: let areas): return areas

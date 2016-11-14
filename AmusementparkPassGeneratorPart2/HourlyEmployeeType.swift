@@ -24,6 +24,10 @@ extension HourlyEmployeeType {
     return ["Food Services", "Ride Services", "Maintenance"]
   }
   
+  static func getRequiredFields() -> [InformationField] {
+    return [.firstName, .lastName, .streetAddress, .city, .state, .zipCode]
+  }
+  
   // returns array of areas that each type has access to
   var accessAreas: [AccessArea] {
     switch self {
