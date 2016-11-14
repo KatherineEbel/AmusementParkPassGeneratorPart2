@@ -20,6 +20,19 @@ enum HourlyEmployeeType: ParkEntrant, Contactable {
 
 extension HourlyEmployeeType {
   
+  static func employee(forType type: String, withInfo info: [InformationField: String]) -> HourlyEmployeeType? {
+    var employee: HourlyEmployeeType? = nil
+    if let contactInformation = ContactInformation(withDictionary: info) {
+      switch type {
+        case "Food Services": employee = HourlyEmployeeType.foodServices(contactInformation)
+        case "Ride Services": employee = HourlyEmployeeType.rideServices(contactInformation)
+        case "Maintenance": employee = HourlyEmployeeType.maintenance(contactInformation)
+        default: return employee
+      }
+    }
+    return employee
+  }
+  
   static var allTypes: [String] {
     return ["Food Services", "Ride Services", "Maintenance"]
   }

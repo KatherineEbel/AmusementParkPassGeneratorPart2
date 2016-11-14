@@ -379,6 +379,9 @@
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <state key="normal" title="Generate Pass"/>
+                                                <connections>
+                                                    <action selector="generatePassButtonPressed" destination="eey-6G-JNA" eventType="touchUpInside" id="zOE-Mz-zW1"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zox-T2-7qs" customClass="RoundedButton" customModule="AmusementparkPassGeneratorPart2" customModuleProvider="target">
                                                 <rect key="frame" x="369" y="0.0" width="319" height="41"/>

@@ -22,6 +22,21 @@ enum GuestType: ParkEntrant, AgeVerifiable, Contactable {
 
 extension GuestType {
   
+  static func guestType(forType type: String, withInfo info: [InformationField: String]) -> GuestType? {
+    var guestType: GuestType? = nil
+    switch type {
+      case "Classic": guestType =  GuestType.classic
+      case "VIP": guestType = GuestType.VIP
+      case "Free Child": guestType = GuestType.freeChild(birthdate: info[.dateOfBirth]!)
+      case "Senior": guestType = GuestType.senior(birthdate: info[.dateOfBirth]!, contactInfo: ContactInformation(firstName: info[.firstName]!, lastName: info[.lastName]!))
+      case "Season Pass":
+        if let contactInfo = ContactInformation(withDictionary: info) {
+          guestType = GuestType.seasonPass(contactInfo)
+        }
+      default: return guestType
+    }
+    return guestType
+  }
   static var allTypes: [String] {
     return ["Classic", "VIP", "Free Child", "Senior", "Season Pass"]
   }
