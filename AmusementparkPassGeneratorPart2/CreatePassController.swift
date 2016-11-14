@@ -64,6 +64,33 @@ class CreatePassController: UIViewController {
       print(pass)
     }
   }
+  // MARK: Create SubType Buttons
+  func setSubTypes(forType type: EntrantType) {
+    let _ = entrantSubTypeStackView.arrangedSubviews.map {
+      entrantSubTypeStackView.removeArrangedSubview($0)
+      $0.removeFromSuperview()
+    }
+    var titles: [String] = []
+    switch type {
+    case .Guest: titles = GuestType.allTypes
+      case .Employee: titles = HourlyEmployeeType.allTypes
+      case .Manager: titles = ManagerType.allTypes
+      case .Vendor: titles = passGenerator.allowedVendors.map { $0.companyName }
+      case .Contractor: titles = passGenerator.openProjects.map { String($0.identificationNumber) }
+    }
+    addSubTypeButtons(withTitles: titles)
+  }
+  
+  // dynamically adds needed buttons depending on the given titles -- determined by setSubtypes function
+  func addSubTypeButtons(withTitles titles: [String]) {
+    for title in titles {
+      let button = EntrantTypeButton()
+      button.setTitle(title, for: .normal)
+      entrantSubTypeStackView.addArrangedSubview(button)
+      button.addTarget(self, action: #selector(CreatePassController.enableFieldsForSubType(_:)), for: .touchUpInside)
+    }
+  }
+  
   
   // get text out of active Textfields
   func createInfoDict() -> [InformationField: String] {
@@ -90,8 +117,14 @@ class CreatePassController: UIViewController {
       if let manager = ManagerType.managerType(forSubType: selectedSubType, withInfo: passInfo) {
         parkGuest = manager
       }
-    case .Contractor, .Vendor:
-      if let tempType = TemporaryType.temporaryType(forSubType: selectedSubType, withInfo: passInfo) {
+    case .Contractor:
+      let accessAreas = (passGenerator.openProjects.filter { $0.identificationNumber == Int(selectedSubType) }.first!).accessAreas
+      if let tempType = TemporaryType.temporaryType(forEntrantType: selectedEntrantType, withInfo: passInfo, accessAreas: accessAreas) {
+        parkGuest = tempType
+      }
+    case .Vendor:
+      let accessAreas = (passGenerator.allowedVendors.filter { $0.companyName == selectedSubType }).first!.accessAreas
+      if let tempType = TemporaryType.temporaryType(forEntrantType: selectedEntrantType, withInfo: passInfo, accessAreas: accessAreas) {
         parkGuest = tempType
       }
     }
@@ -101,6 +134,9 @@ class CreatePassController: UIViewController {
       return nil
     }
   }
+  
+  // MARK: Helpers to update textFields -- enable/disable/default values
+  
   func enableFieldsForSubType(_ sender: UIButton) {
     disableTextFields()
     selectedSubType = sender.currentTitle!
@@ -149,32 +185,6 @@ class CreatePassController: UIViewController {
     }
   }
   
-  func setSubTypes(forType type: EntrantType) {
-    let _ = entrantSubTypeStackView.arrangedSubviews.map {
-      entrantSubTypeStackView.removeArrangedSubview($0)
-      $0.removeFromSuperview()
-    }
-    var titles: [String] = []
-    switch type {
-    case .Guest: titles = GuestType.allTypes
-      case .Employee: titles = HourlyEmployeeType.allTypes
-      case .Manager: titles = ManagerType.allTypes
-      case .Vendor: titles = passGenerator.allowedVendors.map { $0.companyName }
-      case .Contractor: titles = passGenerator.openProjects.map { String($0.identificationNumber) }
-    }
-    addSubTypeButtons(withTitles: titles)
-  }
-  
-  // dynamically adds needed buttons depending on the given titles -- determined by setSubtypes function
-  func addSubTypeButtons(withTitles titles: [String]) {
-    for title in titles {
-      let button = EntrantTypeButton()
-      button.setTitle(title, for: .normal)
-      entrantSubTypeStackView.addArrangedSubview(button)
-      button.addTarget(self, action: #selector(CreatePassController.enableFieldsForSubType(_:)), for: .touchUpInside)
-    }
-  }
-  
   func disableTextFields() {
     activeTextFields = [:]
     let views = informationStackViews.flatMap { $0.arrangedSubviews }
@@ -185,8 +195,5 @@ class CreatePassController: UIViewController {
       $0.backgroundColor = UIColor(red: 219/255.0, green: 214/255.0, blue: 233/255.0, alpha: 0.5)
     }
   }
-  
-  
-
 }
 

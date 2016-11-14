@@ -16,22 +16,19 @@ enum TemporaryType: ParkEntrant, Contactable {
 
 extension TemporaryType {
   
-  static func temporaryType(forSubType type: String, withInfo info: [InformationField: String]) -> TemporaryType? {
+  static func temporaryType(forEntrantType type: EntrantType, withInfo info: [InformationField: String], accessAreas: [AccessArea]) -> TemporaryType? {
     var temporaryType: TemporaryType?
-    let keys = info.map { $0.key }
-    if keys == getRequiredFields(fromTitle: type) {
-      switch type {
-        case "Vendor":
-          if let vendorInfo = VendorVisitInformation(withInfo: info) {
-            temporaryType = TemporaryType.vendor(info: vendorInfo, accessAreas: [])
-          }
-        case "Contractor":
-          var infoDict = info
-          if let projectValue = infoDict.removeValue(forKey: .projectNumber), let projectID = Int(projectValue), let contractorInfo = ContractEmployeeInformation(projectID: projectID, withInfo: infoDict) {
-            temporaryType = TemporaryType.contractEmployee(info: contractorInfo, accessAreas: [])
-          }
-        default: return temporaryType
-      }
+    switch type.rawValue {
+      case "Vendor":
+        if let vendorInfo = VendorVisitInformation(withInfo: info) {
+          temporaryType = TemporaryType.vendor(info: vendorInfo, accessAreas: accessAreas)
+        }
+      case "Contractor":
+        var infoDict = info
+        if let projectValue = infoDict.removeValue(forKey: .projectNumber), let projectID = Int(projectValue), let contractorInfo = ContractEmployeeInformation(projectID: projectID, withInfo: infoDict) {
+          temporaryType = TemporaryType.contractEmployee(info: contractorInfo, accessAreas: accessAreas)
+        }
+      default: return temporaryType
     }
     return temporaryType
   }
