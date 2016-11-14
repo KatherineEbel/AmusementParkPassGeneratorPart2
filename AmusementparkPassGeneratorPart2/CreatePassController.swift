@@ -14,6 +14,7 @@ class CreatePassController: UIViewController {
   @IBOutlet weak var populateDataButton: UIButton!
   @IBOutlet weak var entrantTypeStackView: UIStackView!
   @IBOutlet weak var entrantSubTypeStackView: UIStackView!
+  @IBOutlet weak var mainStackViewTopConstraint: NSLayoutConstraint!
 
   @IBOutlet var informationStackViews: [UIStackView]!
 
@@ -24,10 +25,13 @@ class CreatePassController: UIViewController {
   var selectedEntrantType: EntrantType = .Guest
   var selectedSubType: String = "Classic"
   var activeTextFields: [InformationField : UITextField] = [:]
+  var activeTextField: UITextField = UITextField()
   
     
   override func viewDidLoad() {
     super.viewDidLoad()
+    NotificationCenter.default.addObserver(self, selector: #selector(CreatePassController.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(CreatePassController.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     setSubTypes(forType: .Guest)
     disableTextFields()
 //    let info = ContactInformation(firstName: "Kathy", lastName: "Ebel")
@@ -193,6 +197,26 @@ class CreatePassController: UIViewController {
       $0.text = ""
       $0.isUserInteractionEnabled = false
       $0.backgroundColor = UIColor(red: 219/255.0, green: 214/255.0, blue: 233/255.0, alpha: 0.5)
+    }
+  }
+  
+  
+  func keyboardWillShow(notification: NSNotification) {
+    let shouldMove = activeTextField == activeTextFields[.city] || activeTextField == activeTextFields[.state] || activeTextField == activeTextFields[.zipCode]
+    if shouldMove {
+      UIView.animate(withDuration: 0.8) {
+        self.mainStackViewTopConstraint.constant = 0.0
+        self.view.layoutIfNeeded()
+      }
+    }
+  }
+  
+  func keyboardWillHide(notification: NSNotification) {
+    print("Keyboard will hide")
+    UIView.animate(withDuration: 0.8) {
+      print("Animating")
+      self.mainStackViewTopConstraint.constant = 100.0
+      self.view.layoutIfNeeded()
     }
   }
 }

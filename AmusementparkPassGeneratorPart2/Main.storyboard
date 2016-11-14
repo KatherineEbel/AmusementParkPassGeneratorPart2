@@ -140,6 +140,9 @@
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="eey-6G-JNA" id="3yp-9L-LBh"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
@@ -160,6 +163,9 @@
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="eey-6G-JNA" id="40b-dv-pHZ"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
@@ -180,6 +186,9 @@
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="eey-6G-JNA" id="QmU-vG-GyY"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
@@ -212,6 +221,9 @@
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="eey-6G-JNA" id="Anj-wn-YIF"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
@@ -232,6 +244,9 @@
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="eey-6G-JNA" id="Vfi-Bg-3M3"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
@@ -261,6 +276,9 @@
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="eey-6G-JNA" id="alu-pb-GDZ"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
@@ -291,6 +309,9 @@
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="eey-6G-JNA" id="gTw-jH-jbj"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
@@ -314,6 +335,9 @@
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
+                                                                        <connections>
+                                                                            <outlet property="delegate" destination="eey-6G-JNA" id="lT5-YR-Rmh"/>
+                                                                        </connections>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -334,6 +358,9 @@
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
+                                                                        <connections>
+                                                                            <outlet property="delegate" destination="eey-6G-JNA" id="Mc2-6V-gUs"/>
+                                                                        </connections>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -354,6 +381,9 @@
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
+                                                                        <connections>
+                                                                            <outlet property="delegate" destination="eey-6G-JNA" id="oKf-Tf-j5X"/>
+                                                                        </connections>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -409,6 +439,7 @@
                         <outlet property="entrantSubTypeStackView" destination="HL3-IV-kQA" id="xGr-ZI-cnr"/>
                         <outlet property="entrantTypeStackView" destination="22N-6s-AqJ" id="mIJ-Nf-11R"/>
                         <outlet property="generatePassButton" destination="pBx-Ki-gRf" id="pBD-HY-c9m"/>
+                        <outlet property="mainStackViewTopConstraint" destination="dYk-4o-ghk" id="aQa-DF-rdA"/>
                         <outlet property="populateDataButton" destination="Zox-T2-7qs" id="FOb-Gc-pmX"/>
                         <outletCollection property="informationStackViews" destination="qAv-sD-3P9" collectionClass="NSMutableArray" id="pSC-FF-SzW"/>
                         <outletCollection property="informationStackViews" destination="Yx2-c3-cRC" collectionClass="NSMutableArray" id="WfD-p6-T8A"/>

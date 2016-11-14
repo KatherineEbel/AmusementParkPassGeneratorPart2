@@ -9,5 +9,9 @@
 import UIKit
 
 extension CreatePassController: UITextFieldDelegate {
-
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+    if let currentTextField = (activeTextFields.filter { (key, value) in value == textField }).first {
+      activeTextField = currentTextField.value
+    }
+  }
 }
