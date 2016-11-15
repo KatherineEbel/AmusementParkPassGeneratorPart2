@@ -27,6 +27,7 @@ class CreatePassController: UIViewController {
   var activeTextFields: [InformationField : UITextField] = [:]
   var activeTextField: UITextField = UITextField()
   let dummyData = DummyData()
+  var entrantPass: PassType? = nil
   
     
   override func viewDidLoad() {
@@ -53,7 +54,8 @@ class CreatePassController: UIViewController {
   @IBAction func generatePassButtonPressed() {
     if let guest = guestWithInfo(infoDict: createInfoDict()) {
       let pass = passGenerator.createPass(forEntrant: guest)
-      print(cardReader.areaAccess(forPass: pass))
+      entrantPass = pass
+      performSegue(withIdentifier: "testPass", sender: self)
     }
   }
   
@@ -233,6 +235,15 @@ class CreatePassController: UIViewController {
       print("Animating")
       self.mainStackViewTopConstraint.constant = 100.0
       self.view.layoutIfNeeded()
+    }
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "testPass" {
+      let testPassController = segue.destination as! TestPassController
+      if let entrantPass = self.entrantPass {
+        testPassController.entrantPass = entrantPass
+      }
     }
   }
 }

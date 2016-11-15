@@ -461,10 +461,10 @@
             </objects>
             <point key="canvasLocation" x="569.53125" y="-32.2265625"/>
         </scene>
-        <!--View Controller-->
+        <!--Test Pass Controller-->
         <scene sceneID="M4g-D0-P9U">
             <objects>
-                <viewController id="yYc-49-b0D" sceneMemberID="viewController">
+                <viewController id="yYc-49-b0D" customClass="TestPassController" customModule="AmusementparkPassGeneratorPart2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="92z-to-70n"/>
                         <viewControllerLayoutGuide type="bottom" id="NrL-Ir-DbJ"/>
@@ -474,10 +474,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y8o-Hz-crc" userLabel="HeaderView">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zq-FS-UKu">
-                                        <rect key="frame" x="353.5" y="36" width="62.5" height="29"/>
+                                        <rect key="frame" x="353.5" y="26" width="62.5" height="29"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                         <color key="textColor" red="0.90980392156862744" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -485,19 +485,19 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.34509803921568627" green="0.58431372549019611" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="IFm-3A-G10"/>
+                                    <constraint firstAttribute="height" constant="80" id="IFm-3A-G10"/>
                                     <constraint firstItem="7zq-FS-UKu" firstAttribute="centerX" secondItem="y8o-Hz-crc" secondAttribute="centerX" id="IWx-pG-oqi"/>
                                     <constraint firstItem="7zq-FS-UKu" firstAttribute="centerY" secondItem="y8o-Hz-crc" secondAttribute="centerY" id="SsQ-Fu-O4s"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hLb-FW-bBn">
-                                <rect key="frame" x="20" y="120" width="728" height="884"/>
+                                <rect key="frame" x="20" y="100" width="728" height="904"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sqa-zp-dda" userLabel="PassView">
-                                        <rect key="frame" x="0.0" y="0.0" width="728" height="359"/>
+                                    <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Sqa-zp-dda" userLabel="PassView">
+                                        <rect key="frame" x="0.0" y="0.0" width="728" height="360"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FaceImageAsset" translatesAutoresizingMaskIntoConstraints="NO" id="LVE-cY-VPA">
-                                                <rect key="frame" x="45" y="80" width="204" height="198"/>
+                                                <rect key="frame" x="45" y="80" width="204" height="199"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LKq-ZF-xyS">
                                                 <rect key="frame" x="314" y="20" width="100" height="20"/>
@@ -508,41 +508,36 @@
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="20"/>
+                                                        <real key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Johnny Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldT-gF-Oe2">
-                                                <rect key="frame" x="339" y="80" width="253" height="43"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Johnny Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldT-gF-Oe2">
+                                                <rect key="frame" x="339" y="80" width="244.5" height="43"/>
                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="36"/>
                                                 <color key="textColor" red="0.30980392156862746" green="0.29411764705882354" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Child Guest Pass" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQh-jm-8vm">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Child Guest Pass" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQh-jm-8vm">
                                                 <rect key="frame" x="339" y="131" width="189" height="29"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                                 <color key="textColor" red="0.57647058823529407" green="0.5725490196078431" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10% Food Discount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxW-RH-tRM">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10% Food Discount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxW-RH-tRM">
                                                 <rect key="frame" x="339" y="212" width="205" height="29"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <color key="textColor" red="0.57647058819999997" green="0.57254901960000004" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10% Merchandise Discount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aq7-pF-SXd">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10% Merchandise Discount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aq7-pF-SXd">
                                                 <rect key="frame" x="339" y="249" width="289" height="29"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <color key="textColor" red="0.57647058819999997" green="0.57254901960000004" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Unlimited Rides" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKR-b8-FCc">
-                                                <rect key="frame" x="339" y="175" width="189" height="29"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlimited Rides" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKR-b8-FCc">
+                                                <rect key="frame" x="339" y="175" width="167" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <color key="textColor" red="0.57647058819999997" green="0.57254901960000004" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -551,11 +546,22 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="LVE-cY-VPA" firstAttribute="leading" secondItem="Sqa-zp-dda" secondAttribute="leading" constant="45" id="3l4-j8-QoX"/>
+                                            <constraint firstAttribute="width" constant="728" id="PdA-Mb-lGo"/>
+                                            <constraint firstItem="ldT-gF-Oe2" firstAttribute="top" secondItem="Sqa-zp-dda" secondAttribute="top" constant="80" id="QOB-AI-myh"/>
+                                            <constraint firstItem="kKR-b8-FCc" firstAttribute="leading" secondItem="ldT-gF-Oe2" secondAttribute="leading" id="RDj-NK-K8E"/>
                                             <constraint firstItem="LKq-ZF-xyS" firstAttribute="top" secondItem="Sqa-zp-dda" secondAttribute="top" constant="20" id="SeE-qP-WeJ"/>
+                                            <constraint firstItem="NQh-jm-8vm" firstAttribute="top" secondItem="ldT-gF-Oe2" secondAttribute="bottom" constant="8" id="TJ3-VP-hcs"/>
                                             <constraint firstItem="LKq-ZF-xyS" firstAttribute="centerX" secondItem="Sqa-zp-dda" secondAttribute="centerX" id="UJJ-hq-I18"/>
-                                            <constraint firstItem="LVE-cY-VPA" firstAttribute="centerY" secondItem="Sqa-zp-dda" secondAttribute="centerY" id="acm-sh-8Bb"/>
+                                            <constraint firstItem="NQh-jm-8vm" firstAttribute="leading" secondItem="ldT-gF-Oe2" secondAttribute="leading" id="Z8i-Rw-m0F"/>
+                                            <constraint firstItem="Aq7-pF-SXd" firstAttribute="leading" secondItem="ldT-gF-Oe2" secondAttribute="leading" id="ZBy-3S-Q2u"/>
                                             <constraint firstItem="LVE-cY-VPA" firstAttribute="top" secondItem="Sqa-zp-dda" secondAttribute="top" constant="80" id="ghz-w2-bap"/>
                                             <constraint firstAttribute="bottom" secondItem="LVE-cY-VPA" secondAttribute="bottom" constant="81" id="h9P-II-0yr"/>
+                                            <constraint firstItem="kKR-b8-FCc" firstAttribute="top" secondItem="NQh-jm-8vm" secondAttribute="bottom" constant="15" id="hmO-Mh-OeW"/>
+                                            <constraint firstItem="gxW-RH-tRM" firstAttribute="top" secondItem="kKR-b8-FCc" secondAttribute="bottom" constant="8" id="iiY-XU-Z9y"/>
+                                            <constraint firstAttribute="height" constant="360" id="kaQ-v3-HfS"/>
+                                            <constraint firstItem="gxW-RH-tRM" firstAttribute="leading" secondItem="ldT-gF-Oe2" secondAttribute="leading" id="lgT-FG-QH8"/>
+                                            <constraint firstItem="ldT-gF-Oe2" firstAttribute="leading" secondItem="LVE-cY-VPA" secondAttribute="trailing" constant="90" id="ogc-hE-FNI"/>
+                                            <constraint firstItem="Aq7-pF-SXd" firstAttribute="top" secondItem="gxW-RH-tRM" secondAttribute="bottom" constant="8" id="ojB-hL-872"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -563,47 +569,73 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Access Testing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U8x-IU-CZD">
-                                        <rect key="frame" x="230" y="379" width="268.5" height="43"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SWL-Eo-sp3">
+                                        <rect key="frame" x="0.0" y="380" width="728" height="2"/>
+                                        <color key="backgroundColor" red="0.80000000000000004" green="0.7803921568627451" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="D8m-e7-HcF"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Access Testing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U8x-IU-CZD">
+                                        <rect key="frame" x="230" y="402" width="268.5" height="61"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="36"/>
                                         <color key="textColor" red="0.36862745098039218" green="0.36078431372549019" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm the pass has the expected level of access when swiped at the kiosk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxd-h1-z8E">
-                                        <rect key="frame" x="14.5" y="442" width="699" height="24"/>
+                                        <rect key="frame" x="14.5" y="483" width="699" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <color key="textColor" red="0.57647058823529407" green="0.56470588235294117" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="JUj-zD-GGX">
-                                        <rect key="frame" x="56" y="486" width="616" height="41"/>
+                                        <rect key="frame" x="20" y="527" width="688" height="41"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="260" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K63-lm-mNo">
-                                                <rect key="frame" x="0.0" y="0.0" width="192" height="41"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="216" height="41"/>
                                                 <color key="backgroundColor" red="0.93725490199999995" green="0.92549019610000005" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="tintColor" red="0.34509803919999998" green="0.58431372550000005" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Area Access"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="260" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wVe-Yq-Cto">
-                                                <rect key="frame" x="212" y="0.0" width="192" height="41"/>
+                                                <rect key="frame" x="236" y="0.0" width="216" height="41"/>
                                                 <color key="backgroundColor" red="0.93725490196078431" green="0.92549019607843142" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="tintColor" red="0.34509803921568627" green="0.58431372549019611" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Ride Access"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="260" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0qi-ds-yn5">
-                                                <rect key="frame" x="424" y="0.0" width="192" height="41"/>
+                                                <rect key="frame" x="472" y="0.0" width="216" height="41"/>
                                                 <color key="backgroundColor" red="0.93725490199999995" green="0.92549019610000005" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="tintColor" red="0.34509803919999998" green="0.58431372550000005" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Discount Access"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="250" editable="NO" text="Test Results" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H91-Qr-ets">
-                                        <rect key="frame" x="0.0" y="547" width="728" height="271"/>
+                                        <rect key="frame" x="0.0" y="588" width="728" height="250"/>
                                         <color key="backgroundColor" red="0.79607843137254897" green="0.77647058823529413" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="250" id="27b-1l-pGs"/>
+                                            <constraint firstAttribute="width" constant="728" id="iSq-3v-hsd"/>
+                                        </constraints>
                                         <color key="textColor" red="0.47450980392156861" green="0.45882352941176469" blue="0.48627450980392156" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -614,8 +646,11 @@
                                         </userDefinedRuntimeAttributes>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="255" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3X3-xS-mFR">
-                                        <rect key="frame" x="251.5" y="838" width="225" height="46"/>
+                                        <rect key="frame" x="241.5" y="858" width="245" height="46"/>
                                         <color key="backgroundColor" red="0.79607843137254897" green="0.77647058823529413" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="245" id="Skv-Bf-eyZ"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                         <color key="tintColor" red="0.97647058823529409" green="0.99215686274509807" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Create New Pass"/>
@@ -626,6 +661,12 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="SWL-Eo-sp3" secondAttribute="trailing" id="9nn-sn-c14"/>
+                                    <constraint firstItem="JUj-zD-GGX" firstAttribute="leading" secondItem="hLb-FW-bBn" secondAttribute="leading" constant="20" id="U4s-Xa-LKf"/>
+                                    <constraint firstAttribute="trailing" secondItem="JUj-zD-GGX" secondAttribute="trailing" constant="20" id="gtP-Vw-tku"/>
+                                    <constraint firstItem="SWL-Eo-sp3" firstAttribute="leading" secondItem="hLb-FW-bBn" secondAttribute="leading" id="sDQ-m4-pLa"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.85882352941176465" green="0.83921568627450982" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
@@ -635,8 +676,8 @@
                             <constraint firstItem="y8o-Hz-crc" firstAttribute="top" secondItem="jFN-yZ-NRM" secondAttribute="top" id="VMK-Nt-Vl3"/>
                             <constraint firstItem="hLb-FW-bBn" firstAttribute="leading" secondItem="jFN-yZ-NRM" secondAttribute="leadingMargin" id="Wxm-cl-9w2"/>
                             <constraint firstItem="hLb-FW-bBn" firstAttribute="trailing" secondItem="jFN-yZ-NRM" secondAttribute="trailingMargin" id="Xke-wC-VdT"/>
-                            <constraint firstItem="NrL-Ir-DbJ" firstAttribute="top" secondItem="hLb-FW-bBn" secondAttribute="bottom" constant="20" id="bum-DB-NML"/>
                             <constraint firstItem="hLb-FW-bBn" firstAttribute="top" secondItem="y8o-Hz-crc" secondAttribute="bottom" constant="20" id="dCq-V2-pyr"/>
+                            <constraint firstAttribute="bottom" secondItem="hLb-FW-bBn" secondAttribute="bottom" constant="20" id="f7q-wd-iQ2"/>
                         </constraints>
                     </view>
                 </viewController>
