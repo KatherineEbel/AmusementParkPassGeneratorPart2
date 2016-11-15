@@ -43,6 +43,7 @@
 		4469C4F01DD943D700541798 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4469C4EF1DD943D700541798 /* TextFieldDelegate.swift */; };
 		4469C4F21DD9E82F00541798 /* CreatePassControllerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4469C4F11DD9E82F00541798 /* CreatePassControllerError.swift */; };
 		4469C4F61DDA698C00541798 /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4469C4F51DDA698C00541798 /* DummyData.swift */; };
+		4469C4F81DDB2C5F00541798 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4469C4F71DDB2C5F00541798 /* UIViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		4469C4EF1DD943D700541798 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		4469C4F11DD9E82F00541798 /* CreatePassControllerError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePassControllerError.swift; sourceTree = "<group>"; };
 		4469C4F51DDA698C00541798 /* DummyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
+		4469C4F71DDB2C5F00541798 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 				278D2EE11DD893B500E058D0 /* RoundedButton.swift */,
 				278D2EE31DD8A78E00E058D0 /* EntrantTypeButton.swift */,
 				4469C4EF1DD943D700541798 /* TextFieldDelegate.swift */,
+				4469C4F71DDB2C5F00541798 /* UIViewExtension.swift */,
 			);
 			path = AmusementparkPassGeneratorPart2;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				4469C4F61DDA698C00541798 /* DummyData.swift in Sources */,
 				27D58A721DD4D4E30026C9D7 /* AgeVerifiable.swift in Sources */,
 				27D58A4A1DD4D4650026C9D7 /* CreatePassController.swift in Sources */,
+				4469C4F81DDB2C5F00541798 /* UIViewExtension.swift in Sources */,
 				278D2ED41DD626B400E058D0 /* Vendor.swift in Sources */,
 				27D58A7A1DD4D4E30026C9D7 /* RideAccess.swift in Sources */,
 				27D58A741DD4D4E30026C9D7 /* ContactInformation.swift in Sources */,
