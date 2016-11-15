@@ -26,6 +26,7 @@ class CreatePassController: UIViewController {
   var selectedSubType: String = "Classic"
   var activeTextFields: [InformationField : UITextField] = [:]
   var activeTextField: UITextField = UITextField()
+  let dummyData = DummyData()
   
     
   override func viewDidLoad() {
@@ -34,20 +35,6 @@ class CreatePassController: UIViewController {
     NotificationCenter.default.addObserver(self, selector: #selector(CreatePassController.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     setSubTypes(forType: .Guest)
     disableTextFields()
-//    let info = ContactInformation(firstName: "Kathy", lastName: "Ebel")
-//    let vendorVisit = VendorVisitInformation(companyName: "Acme", dateOfVisit: "2016-11-12", dateOfBirth: "11-12-1978", contactInfo: info)
-//    let vendorPass = passGenerator.createPass(forEntrant: TemporaryType.vendor(info: vendorVisit, accessAreas: []))
-//    print(cardReader.areaAccess(forPass: vendorPass))
-//    print(cardReader.rideAccess(forPass: vendorPass))
-//    print(cardReader.swipeAccess(vendorPass, hasAccessTo: .kitchen))
-//    let infoDict = ["firstName": "Kathy", "lastName": "Ebel", "streetAddress": "1 Wonder Way", "city": "Somewhere Out There", "state": "CA", "zipCode": "90210"]
-//    let contractEmpInfo = ContractEmployeeInformation(projectID: 1001, withInfo: infoDict)
-//    let tempEmployee = TemporaryType.contractEmployee(info: contractEmpInfo!, accessAreas: [])
-//    let contractEmpPass = passGenerator.createPass(forEntrant: tempEmployee)
-//    print(cardReader.areaAccess(forPass: contractEmpPass))
-//    print(cardReader.discountAccess(forPass: contractEmpPass))
-//    print(cardReader.rideAccess(forPass: contractEmpPass))
-    
   }
 
   override func didReceiveMemoryWarning() {
@@ -64,10 +51,32 @@ class CreatePassController: UIViewController {
   }
   
   @IBAction func generatePassButtonPressed() {
-    if let pass = setValuesForPass() {
-      print(pass)
+    if let guest = guestWithInfo(infoDict: createInfoDict()) {
+      let pass = passGenerator.createPass(forEntrant: guest)
+      print(cardReader.areaAccess(forPass: pass))
     }
   }
+  
+  @IBAction func populateDataButtonPressed() {
+    guard !activeTextFields.isEmpty else {
+      return
+    }
+    var info: [InformationField: String] = [:]
+    switch selectedEntrantType {
+      case .Guest:
+        switch selectedSubType {
+          case "Free Child": info = dummyData.childInfo
+          case "Senior": info = dummyData.seniorInfo
+          case "Season Pass": info = dummyData.contactInformation
+          default: break
+        }
+      case .Employee, .Manager: info = dummyData.contactInformation
+      case .Contractor: info = dummyData.nameInformation
+      case .Vendor: info = dummyData.vendorInfo
+    }
+    let _ = info.map { (key, value) in activeTextFields[key]?.text = value }
+  }
+  
   // MARK: Create SubType Buttons
   func setSubTypes(forType type: EntrantType) {
     let _ = entrantSubTypeStackView.arrangedSubviews.map {
@@ -105,7 +114,8 @@ class CreatePassController: UIViewController {
     return infoDict
   }
   
-  func setValuesForPass() -> PassType? {
+  // allows dictionary to be passed in and returns the right ParkEntrant type
+  func guestWithInfo(infoDict dict: [InformationField: String]) -> ParkEntrant? {
     var parkGuest: ParkEntrant? = nil
     let passInfo = createInfoDict()
     switch selectedEntrantType {
@@ -133,7 +143,7 @@ class CreatePassController: UIViewController {
       }
     }
     if let parkGuest = parkGuest {
-      return passGenerator.createPass(forEntrant: parkGuest)
+      return parkGuest
     } else {
       return nil
     }
@@ -178,14 +188,20 @@ class CreatePassController: UIViewController {
       return
     }
     let _ = activeTextFields.filter { (key, value) in
-      if key == .projectNumber || key == .companyName {
+      if key == .projectNumber || key == .companyName || key == .dateOfVisit {
         return true
       } else {
         return false
       }
     }.map { (key, value) in
-      
-      value.text = selectedSubType
+      if key == .dateOfVisit {
+        let todaysDate = AccessPassGenerator.AccessPass.dateFormatter.string(from: Date())
+        print(todaysDate)
+        value.text = todaysDate
+      }
+      if key == .projectNumber || key == .companyName {
+        value.text = selectedSubType
+      }
     }
   }
   

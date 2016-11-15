@@ -175,8 +175,7 @@ extension AccessCardReader {
   // equal, it is the entrant's birthday.
   // I currently only have birthdays attached to child passes.
   private func isBirthday(forPass pass: PassType, withDate date: BirthDate) -> Bool {
-    let accessPass = pass as! AccessPassGenerator.AccessPass
-    let formatter = accessPass.dateFormatter
+    let formatter = AccessPassGenerator.AccessPass.dateFormatter
     let todaysDate = formatter.string(from: Date())
     let compareIndex = date.index(date.endIndex, offsetBy: -5)
     if date.substring(to: compareIndex) == todaysDate.substring(to: compareIndex) {
