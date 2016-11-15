@@ -17,3 +17,18 @@ struct VendorVisitInformation: Contactable {
     return "\(contactInfo.firstName) \(contactInfo.lastName) works for \(companyName)"
   }
 }
+
+extension VendorVisitInformation {
+  init?(withInfo infoDict: [InformationField: String]) {
+    if let companyName = infoDict[.companyName], let dateOfVisit = infoDict[.dateOfVisit],
+      let dateOfBirth = infoDict[.dateOfBirth], let firstName = infoDict[.firstName],
+      let lastName = infoDict[.lastName] {
+      self.companyName = companyName
+      self.dateOfVisit = dateOfVisit
+      self.dateOfBirth = dateOfBirth
+      self.contactInfo = ContactInformation(firstName: firstName, lastName: lastName)
+    } else {
+      return nil
+    }
+  }
+}

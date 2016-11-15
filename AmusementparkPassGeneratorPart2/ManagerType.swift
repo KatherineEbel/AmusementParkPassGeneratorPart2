@@ -17,6 +17,22 @@ enum ManagerType: ParkEntrant, Contactable {
 }
 
 extension ManagerType {
+  
+  static func managerType(forSubType type: String, withInfo info: [InformationField: String]) -> ManagerType? {
+    if let contactInformation = ContactInformation(withDictionary: info) {
+      return ManagerType.manager(contactInformation)
+    } else {
+      return nil
+    }
+  }
+  
+  static var allTypes: [String] {
+    return ["General"]
+  }
+  static func getRequiredFields() -> [InformationField] {
+    return [.firstName, .lastName, .streetAddress, .city, .state, .zipCode]
+  }
+  
   // returns a named tuple for each GuestType case (accessed by discounts.food, discounts.merchandise)
   var discounts: (food: Percent, merchandise: Percent) {
     let foodDiscount = DiscountType.food(managerFoodDiscount).discount

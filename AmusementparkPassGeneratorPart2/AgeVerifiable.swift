@@ -14,7 +14,6 @@ fileprivate let seniorAge: TimeInterval = 65
 
 // Currently only GuestTypes are AgeVerifiable
 protocol AgeVerifiable {
-  var dateFormatter: DateFormatter { get }
   func years(fromSeconds seconds: TimeInterval) -> TimeInterval
   func ageFrom(dateString string: BirthDate) throws -> TimeInterval
   func isValidChildAge(dateString string: BirthDate) throws -> Bool
@@ -22,11 +21,6 @@ protocol AgeVerifiable {
 }
 
 extension AgeVerifiable {
-  var dateFormatter: DateFormatter {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "MM-dd-yyyy"
-    return dateFormatter
-  }
   
   // converts passed in timeInterval (seconds) to number of years
   func years(fromSeconds seconds: TimeInterval) -> TimeInterval {
@@ -39,16 +33,17 @@ extension AgeVerifiable {
   
   func ageFrom(dateString string: BirthDate) throws -> TimeInterval {
     let today = Date()
-    guard let birthdate = dateFormatter.date(from: string) else {
+    guard let birthdate = AccessPassGenerator.AccessPass.dateFormatter.date(from: string) else {
       throw AccessPassError.InvalidDateFormat(message: "Please enter date in format \"yyyy-mm-dd\"")
     }
     let timeInterval = today.timeIntervalSince(birthdate)
-    return timeInterval
+    return years(fromSeconds: timeInterval)
   }
   
   func isValidChildAge(dateString string: BirthDate) throws -> Bool {
     do {
       let age = try ageFrom(dateString: string)
+      print(age)
       guard age < 5 else {
         throw AccessPassError.FailsChildAgeRequirement(message: "Child does not meet age requirements for a free child pass\nPass converted to Classic Pass")
       }

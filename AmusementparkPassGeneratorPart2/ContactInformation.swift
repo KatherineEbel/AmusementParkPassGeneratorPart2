@@ -28,11 +28,11 @@ class ContactInformation: Contactable {
     }
   }
   
-  init?(withDictionary info: [String: String]) {
+  init?(withDictionary info: [InformationField: String]) {
    do {
-     if let firstName = info["firstName"], let lastName = info["lastName"],
-       let streetAddress = info["streetAddress"], let city = info["city"],
-       let state = info["state"], let zipCode = info["zipCode"] {
+     if let firstName = info[.firstName], let lastName = info[.lastName],
+       let streetAddress = info[.streetAddress], let city = info[.city],
+       let state = info[.state], let zipCode = info[.zipCode] {
       self.firstName = firstName
       self.lastName = lastName
       self.streetAddress = streetAddress

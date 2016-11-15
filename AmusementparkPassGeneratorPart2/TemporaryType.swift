@@ -15,10 +15,40 @@ enum TemporaryType: ParkEntrant, Contactable {
 }
 
 extension TemporaryType {
+  
+  static func temporaryType(forEntrantType type: EntrantType, withInfo info: [InformationField: String], accessAreas: [AccessArea]) -> TemporaryType? {
+    var temporaryType: TemporaryType?
+    switch type.rawValue {
+      case "Vendor":
+        if let vendorInfo = VendorVisitInformation(withInfo: info) {
+          temporaryType = TemporaryType.vendor(info: vendorInfo, accessAreas: accessAreas)
+        }
+      case "Contractor":
+        var infoDict = info
+        if let projectValue = infoDict.removeValue(forKey: .projectNumber), let projectID = Int(projectValue), let contractorInfo = ContractEmployeeInformation(projectID: projectID, withInfo: infoDict) {
+          temporaryType = TemporaryType.contractEmployee(info: contractorInfo, accessAreas: accessAreas)
+        }
+      default: return temporaryType
+    }
+    return temporaryType
+  }
+  
+  static func getRequiredFields(fromTitle title: String) -> [InformationField] {
+    if let _ = Int(title) {
+      return [.projectNumber, .firstName, .lastName, .streetAddress, .city, .state, .zipCode]
+    } else {
+      return [.dateOfBirth, .dateOfVisit, .firstName, .lastName, .companyName]
+    }
+  }
   var accessAreas: [AccessArea] {
-    switch self {
-    case .contractEmployee(info: _, accessAreas: let areas): return areas
-    case .vendor(info: _, accessAreas: let areas): return areas
+    get {
+      switch self {
+        case .contractEmployee(info: _, accessAreas: let areas): return areas
+        case .vendor(info: _, accessAreas: let areas): return areas
+      }
+    }
+    set {
+      self.accessAreas = newValue
     }
   }
   

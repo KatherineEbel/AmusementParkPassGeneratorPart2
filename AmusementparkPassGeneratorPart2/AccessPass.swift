@@ -12,6 +12,12 @@ fileprivate let seniorAge: Double = 65
 
 // AccessPass struct is located in the AccessPassGenerator class
 extension AccessPassGenerator.AccessPass {
+  static var dateFormatter: DateFormatter {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MM-dd-yyyy"
+    return dateFormatter
+  }
+  
   // returns foodDiscount for instance of pass
   var foodDiscount: Percent {
     let foodDiscount = type.discounts.food
@@ -105,4 +111,5 @@ extension AccessPassGenerator.AccessPass {
     }
     return false
   }
+  
 }

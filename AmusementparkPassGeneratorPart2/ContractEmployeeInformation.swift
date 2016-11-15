@@ -11,7 +11,7 @@ import Foundation
 class ContractEmployeeInformation: ContactInformation {
   let projectID: Int
   
-  init?(projectID: Int, withInfo info: [String: String]) {
+  init?(projectID: Int, withInfo info: [InformationField: String]) {
     self.projectID = projectID
     super.init(withDictionary: info)
   }
