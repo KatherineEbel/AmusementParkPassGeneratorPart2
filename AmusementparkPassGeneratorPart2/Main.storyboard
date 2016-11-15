@@ -602,6 +602,9 @@
                                                         <real key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="testAreaAccess" destination="yYc-49-b0D" eventType="touchUpInside" id="av5-9I-0it"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="260" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wVe-Yq-Cto">
                                                 <rect key="frame" x="236" y="0.0" width="216" height="41"/>
@@ -614,6 +617,9 @@
                                                         <real key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="testRideAccess" destination="yYc-49-b0D" eventType="touchUpInside" id="jov-tX-PLM"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="260" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0qi-ds-yn5">
                                                 <rect key="frame" x="472" y="0.0" width="216" height="41"/>
@@ -636,7 +642,7 @@
                                             <constraint firstAttribute="height" constant="250" id="27b-1l-pGs"/>
                                             <constraint firstAttribute="width" constant="728" id="iSq-3v-hsd"/>
                                         </constraints>
-                                        <color key="textColor" red="0.47450980392156861" green="0.45882352941176469" blue="0.48627450980392156" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.47783231735229492" green="0.45811015367507935" blue="0.48844665288925171" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <userDefinedRuntimeAttributes>
@@ -659,6 +665,9 @@
                                                 <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="createNewPass" destination="yYc-49-b0D" eventType="touchUpInside" id="9KN-YX-lGE"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -680,6 +689,9 @@
                             <constraint firstAttribute="bottom" secondItem="hLb-FW-bBn" secondAttribute="bottom" constant="20" id="f7q-wd-iQ2"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="H91-Qr-ets" id="Vyv-ub-GSW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dy5-cv-hOh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

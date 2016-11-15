@@ -62,11 +62,13 @@ extension AccessCardReader {
   
   // MARK: Swipe Access
   // takes pass and an access area and returns true /plays sound if pass has access
-  func swipeAccess(_ pass: PassType, hasAccessTo area: AccessArea) -> Bool {
-    displayBirthdayMessage(forPass: pass)
+  func swipeAccess(_ pass: PassType, hasAccessTo area: AccessArea) -> (hasAccess: Bool, message: AccessMessage) {
+    let birthdayMessage = displayBirthdayMessage(forPass: pass)
+    var message = "\(birthdayMessage)"
     let success = pass.hasAccess(toArea: area)
+    message += success ? "This pass has access to \(area.rawValue)" : "This pass doesn't have access to \(area.rawValue)"
     playSound(success)
-    return success
+    return (success, message)
   }
   
   // swipe a pass for individual types of discounts plays appropriate sound
@@ -83,23 +85,24 @@ extension AccessCardReader {
   }
   
   // swipe a pass for individual types of ride access -- plays appropriate sound
-  mutating func swipeAccess(_ pass: PassType, hasRideAccess type: RideAccess) -> AccessMessage {
+  mutating func swipeAccess(_ pass: PassType, hasRideAccess type: RideAccess) -> (hasAccess: Bool, message: AccessMessage) {
     do {
       let _ = try isValidSwipe(forID: pass.passID)
     } catch AccessPassError.DoubleSwipeError(message: let message) {
-      return(message)
+      return(false, message)
     } catch let error {
-      return ("\(error)")
+      return (false, "\(error)")
     }
-    displayBirthdayMessage(forPass: pass)
     var (hasAccess, message): (Bool, AccessMessage)
+    message = displayBirthdayMessage(forPass: pass)
     switch type {
     case .allRides(let success): (hasAccess, message) = (success, "to all rides")
     case .skipsQueues(let success): (hasAccess, message) = (success, "to skip lines for rides")
     }
     playSound(hasAccess)
     (lastPassID, lastTimeStamp) = (pass.passID, timeStamp)
-    return hasAccess ? "This pass has access \(message)" : "This pass doesn't have access \(message)"
+    // return a tuple with bool to determine success and message to display
+    return (hasAccess, hasAccess ? "This pass has access \(message)" : "This pass doesn't have access \(message)")
   }
   
   // displays error message if id matches lastUsedId and also used < 10 seconds ago
@@ -138,11 +141,11 @@ extension AccessCardReader {
         isMatch = isBirthday(forPass: pass, withDate: birthday)
       }
     }
-    return isMatch ? "Happy Birthday" : ""
+    return isMatch ? "Happy Birthday!\n" : ""
   }
   
   // will only print a message if there is one to display
-  private func displayBirthdayMessage(forPass pass: PassType) {
+  private func displayBirthdayMessage(forPass pass: PassType) -> AccessMessage {
     var firstName = ""
     switch pass.type {
       // names are known for senior and vendors so personalize birthday greeting with their name
@@ -165,8 +168,9 @@ extension AccessCardReader {
       } else {
         birthDayMessage += "!"
       }
-      print(birthDayMessage)
+      return birthDayMessage
     }
+    return birthDayMessage
   }
   
   // MARK: Helper methods
