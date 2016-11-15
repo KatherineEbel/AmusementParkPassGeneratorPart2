@@ -138,7 +138,7 @@
                                                                     <constraint firstAttribute="height" constant="50" id="vV0-1g-FJ9"/>
                                                                 </constraints>
                                                                 <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="eey-6G-JNA" id="3yp-9L-LBh"/>
@@ -161,7 +161,7 @@
                                                                     <constraint firstAttribute="height" constant="50" id="Hrw-HT-mp8"/>
                                                                 </constraints>
                                                                 <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="eey-6G-JNA" id="40b-dv-pHZ"/>
@@ -178,13 +178,13 @@
                                                                 <color key="textColor" red="0.37254901960784315" green="0.36470588235294116" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" clipsSubviews="YES" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="####" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d4J-Yq-m19">
+                                                            <textField opaque="NO" clipsSubviews="YES" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="####" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d4J-Yq-m19">
                                                                 <rect key="frame" x="0.0" y="39" width="216" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="9dr-sk-rNc"/>
                                                                 </constraints>
                                                                 <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="eey-6G-JNA" id="QmU-vG-GyY"/>
@@ -213,13 +213,13 @@
                                                                 <color key="textColor" red="0.37254901959999998" green="0.36470588240000001" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" clipsSubviews="YES" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E14-DZ-Tv5">
+                                                            <textField opaque="NO" clipsSubviews="YES" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E14-DZ-Tv5">
                                                                 <rect key="frame" x="0.0" y="39" width="324" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="wsl-mf-W9y"/>
                                                                 </constraints>
                                                                 <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="eey-6G-JNA" id="Anj-wn-YIF"/>
@@ -236,13 +236,13 @@
                                                                 <color key="textColor" red="0.37254901959999998" green="0.36470588240000001" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" clipsSubviews="YES" tag="105" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NaO-7F-I7e">
+                                                            <textField opaque="NO" clipsSubviews="YES" tag="105" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NaO-7F-I7e">
                                                                 <rect key="frame" x="0.0" y="39" width="324" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="OXr-HZ-XUj"/>
                                                                 </constraints>
                                                                 <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="eey-6G-JNA" id="Vfi-Bg-3M3"/>
@@ -268,13 +268,13 @@
                                                         <color key="textColor" red="0.37254901959999998" green="0.36470588240000001" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" tag="106" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PgM-cs-Jay">
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="106" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PgM-cs-Jay">
                                                         <rect key="frame" x="0.0" y="39" width="688" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="g3X-5b-Kt7"/>
                                                         </constraints>
                                                         <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="eey-6G-JNA" id="alu-pb-GDZ"/>
@@ -301,13 +301,13 @@
                                                                 <color key="textColor" red="0.37254901959999998" green="0.36470588240000001" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" clipsSubviews="YES" tag="107" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uWV-EC-8Xr">
+                                                            <textField opaque="NO" clipsSubviews="YES" tag="107" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uWV-EC-8Xr">
                                                                 <rect key="frame" x="0.0" y="44" width="688" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="Nyw-Pf-dqT"/>
                                                                 </constraints>
                                                                 <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="eey-6G-JNA" id="gTw-jH-jbj"/>
@@ -327,13 +327,13 @@
                                                                         <color key="textColor" red="0.37254901959999998" green="0.36470588240000001" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" clipsSubviews="YES" tag="108" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F0n-as-XVH">
+                                                                    <textField opaque="NO" clipsSubviews="YES" tag="108" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F0n-as-XVH">
                                                                         <rect key="frame" x="0.0" y="34" width="216" height="50"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="50" id="Kja-J1-tAL"/>
                                                                         </constraints>
                                                                         <nil key="textColor"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                         <connections>
                                                                             <outlet property="delegate" destination="eey-6G-JNA" id="lT5-YR-Rmh"/>
@@ -350,13 +350,13 @@
                                                                         <color key="textColor" red="0.37254901959999998" green="0.36470588240000001" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" clipsSubviews="YES" tag="109" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Fs-uq-azF">
+                                                                    <textField opaque="NO" clipsSubviews="YES" tag="109" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Fs-uq-azF">
                                                                         <rect key="frame" x="0.0" y="34" width="216" height="50"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="50" id="J44-He-u6a"/>
                                                                         </constraints>
                                                                         <nil key="textColor"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                         <connections>
                                                                             <outlet property="delegate" destination="eey-6G-JNA" id="Mc2-6V-gUs"/>
@@ -373,13 +373,13 @@
                                                                         <color key="textColor" red="0.37254901959999998" green="0.36470588240000001" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" clipsSubviews="YES" tag="110" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vgI-mc-8rv">
+                                                                    <textField opaque="NO" clipsSubviews="YES" tag="110" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vgI-mc-8rv">
                                                                         <rect key="frame" x="0.0" y="34" width="216" height="50"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="50" id="6Pm-7d-D9V"/>
                                                                         </constraints>
                                                                         <nil key="textColor"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                         <connections>
                                                                             <outlet property="delegate" destination="eey-6G-JNA" id="oKf-Tf-j5X"/>
@@ -419,6 +419,9 @@
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <color key="tintColor" red="0.34509803919999998" green="0.58431372550000005" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Populate Data"/>
+                                                <connections>
+                                                    <action selector="populateDataButtonPressed" destination="eey-6G-JNA" eventType="touchUpInside" id="wOt-Ym-q8R"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>

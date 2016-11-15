@@ -42,6 +42,7 @@
 		27D58A8A1DD506450026C9D7 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D58A891DD506450026C9D7 /* Project.swift */; };
 		4469C4F01DD943D700541798 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4469C4EF1DD943D700541798 /* TextFieldDelegate.swift */; };
 		4469C4F21DD9E82F00541798 /* CreatePassControllerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4469C4F11DD9E82F00541798 /* CreatePassControllerError.swift */; };
+		4469C4F61DDA698C00541798 /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4469C4F51DDA698C00541798 /* DummyData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		27D58A891DD506450026C9D7 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		4469C4EF1DD943D700541798 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		4469C4F11DD9E82F00541798 /* CreatePassControllerError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePassControllerError.swift; sourceTree = "<group>"; };
+		4469C4F51DDA698C00541798 /* DummyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +204,7 @@
 				278D2ED51DD74ACC00E058D0 /* AccessSoundCue.swift */,
 				2748CA611DD9017700E790CA /* InformationField.swift */,
 				4469C4F11DD9E82F00541798 /* CreatePassControllerError.swift */,
+				4469C4F51DDA698C00541798 /* DummyData.swift */,
 			);
 			name = Helper/ErrorTypes;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				27D58A701DD4D4E30026C9D7 /* AccessPassError.swift in Sources */,
 				278D2EE61DD8B5EE00E058D0 /* EntrantType.swift in Sources */,
 				27D58A6E1DD4D4E30026C9D7 /* PassType.swift in Sources */,
+				4469C4F61DDA698C00541798 /* DummyData.swift in Sources */,
 				27D58A721DD4D4E30026C9D7 /* AgeVerifiable.swift in Sources */,
 				27D58A4A1DD4D4650026C9D7 /* CreatePassController.swift in Sources */,
 				278D2ED41DD626B400E058D0 /* Vendor.swift in Sources */,
