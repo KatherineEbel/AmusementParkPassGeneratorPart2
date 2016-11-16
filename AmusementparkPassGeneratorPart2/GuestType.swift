@@ -41,7 +41,7 @@ extension GuestType {
     return ["Classic", "VIP", "Free Child", "Senior", "Season Pass"]
   }
   
-  var rawValue: String {
+  var subType: SubType {
     switch self {
     case .classic: return "Classic"
     case .VIP: return "VIP"
@@ -96,7 +96,7 @@ extension GuestType {
   }
   
   var contactDetails: String {
-    var details = ""
+    var details = "Park Guest"
     if let information = self.contactInformation {
       let (firstName, lastName) = (information.firstName, information.lastName)
       details += "\(firstName) \(lastName)"

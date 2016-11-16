@@ -14,7 +14,7 @@ class EntrantTypeButton: UIButton {
   
   
   override func awakeFromNib() {
-    tintColor = UIColor(red: 209/255.0, green: 193/255.0, blue: 225/255.0, alpha: 1.0)
+    tintColor = UIColor(red: 135/255.0, green: 126/255.0, blue: 145/255.0, alpha: 1.0)
   }
 
     /*

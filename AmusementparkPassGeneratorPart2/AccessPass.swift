@@ -14,7 +14,7 @@ fileprivate let seniorAge: Double = 65
 extension AccessPassGenerator.AccessPass {
   static var dateFormatter: DateFormatter {
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "MM-dd-yyyy"
+    dateFormatter.dateFormat = "MM/dd/yyyy"
     return dateFormatter
   }
   

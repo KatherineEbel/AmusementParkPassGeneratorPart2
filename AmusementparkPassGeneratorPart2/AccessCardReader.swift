@@ -63,25 +63,27 @@ extension AccessCardReader {
   // MARK: Swipe Access
   // takes pass and an access area and returns true /plays sound if pass has access
   func swipeAccess(_ pass: PassType, hasAccessTo area: AccessArea) -> (hasAccess: Bool, message: AccessMessage) {
-    let birthdayMessage = displayBirthdayMessage(forPass: pass)
-    var message = "\(birthdayMessage)"
+    let bdayMessage = birthdayMessage(forPass: pass)
+    var message = "\(bdayMessage)\n"
     let success = pass.hasAccess(toArea: area)
-    message += success ? "This pass has access to \(area.rawValue)" : "This pass doesn't have access to \(area.rawValue)"
+    message += success ? "This pass has access to \(area.rawValue) areas" :
+      "This pass doesn't have access to \(area.rawValue) areas"
     playSound(success)
     return (success, message)
   }
   
   // swipe a pass for individual types of discounts plays appropriate sound
-  func swipeAccess(_ pass: PassType, discountFor type: DiscountType) -> AccessMessage {
-    displayBirthdayMessage(forPass: pass)
+  func swipeAccess(_ pass: PassType, discountFor type: DiscountType) -> (hasAccess: Bool, message: AccessMessage) {
+    let bdayMessage = birthdayMessage(forPass: pass)
     var (discountType, discountAmount): (AccessMessage, AccessMessage)
     switch type {
     case .food(let foodDiscount): (discountType, discountAmount) =  ("Food", "\(foodDiscount)")
     case .merchandise(let merchandiseDiscount): (discountType, discountAmount) = ("Merchandise", "\(merchandiseDiscount)")
     }
-    playSound(discountAmount != "0")
-    return discountAmount == "0" ? "This pass doesn't have a \(discountType) discount" :
-    "This pass has a \(discountAmount)% \(discountType) discount"
+    let success = discountAmount != "0"
+    playSound(success)
+    return (success, success ? "\(bdayMessage)\nThis pass doesn't have a \(discountType) discount" :
+    "\(bdayMessage)\nThis pass has a \(discountAmount)% \(discountType) discount")
   }
   
   // swipe a pass for individual types of ride access -- plays appropriate sound
@@ -94,15 +96,17 @@ extension AccessCardReader {
       return (false, "\(error)")
     }
     var (hasAccess, message): (Bool, AccessMessage)
-    message = displayBirthdayMessage(forPass: pass)
     switch type {
     case .allRides(let success): (hasAccess, message) = (success, "to all rides")
     case .skipsQueues(let success): (hasAccess, message) = (success, "to skip lines for rides")
     }
+    
+    let bdayMessage = birthdayMessage(forPass: pass)
     playSound(hasAccess)
     (lastPassID, lastTimeStamp) = (pass.passID, timeStamp)
     // return a tuple with bool to determine success and message to display
-    return (hasAccess, hasAccess ? "This pass has access \(message)" : "This pass doesn't have access \(message)")
+    return (hasAccess, hasAccess ?
+      "\(bdayMessage)\nThis pass has access \(message)" : "\(bdayMessage)\nThis pass doesn't have access \(message)")
   }
   
   // displays error message if id matches lastUsedId and also used < 10 seconds ago
@@ -120,7 +124,7 @@ extension AccessCardReader {
     return true
   }
   
-  // pass will be checked every time it is swiped *** only child passes currently have associated birthdays
+  // pass will be checked every time it is swiped *** only child, senior and vendor birthdays are known
   func alertBirthday(forPass pass: PassType) -> AccessMessage {
     guard pass.type is AgeVerifiable && pass.type is GuestType || pass.type is TemporaryType else {
       return ""
@@ -141,11 +145,11 @@ extension AccessCardReader {
         isMatch = isBirthday(forPass: pass, withDate: birthday)
       }
     }
-    return isMatch ? "Happy Birthday!\n" : ""
+    return isMatch ? "Happy Birthday" : ""
   }
   
-  // will only print a message if there is one to display
-  private func displayBirthdayMessage(forPass pass: PassType) -> AccessMessage {
+  // returns an empty string, happy birthday or includes name if it is known
+  private func birthdayMessage(forPass pass: PassType) -> AccessMessage {
     var firstName = ""
     switch pass.type {
       // names are known for senior and vendors so personalize birthday greeting with their name
@@ -180,7 +184,7 @@ extension AccessCardReader {
   // I currently only have birthdays attached to child passes.
   private func isBirthday(forPass pass: PassType, withDate date: BirthDate) -> Bool {
     let formatter = AccessPassGenerator.AccessPass.dateFormatter
-    let todaysDate = formatter.string(from: Date())
+    let todaysDate = formatter.string(from: Date()).replacingOccurrences(of: "-", with: "/")
     let compareIndex = date.index(date.endIndex, offsetBy: -5)
     if date.substring(to: compareIndex) == todaysDate.substring(to: compareIndex) {
       return true

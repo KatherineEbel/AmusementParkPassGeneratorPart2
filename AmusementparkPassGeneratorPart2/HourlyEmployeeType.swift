@@ -41,6 +41,14 @@ extension HourlyEmployeeType {
     return [.firstName, .lastName, .streetAddress, .city, .state, .zipCode]
   }
   
+  var subType: SubType {
+    switch self {
+      case .foodServices: return "Food Services"
+      case .maintenance: return "Maintenance"
+      case .rideServices: return "Ride Services"
+    }
+  }
+  
   // returns array of areas that each type has access to
   var accessAreas: [AccessArea] {
     switch self {

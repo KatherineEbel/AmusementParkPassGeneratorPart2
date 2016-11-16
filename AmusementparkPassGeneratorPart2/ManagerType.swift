@@ -33,6 +33,12 @@ extension ManagerType {
     return [.firstName, .lastName, .streetAddress, .city, .state, .zipCode]
   }
   
+  var subType: SubType {
+    switch self {
+      case .manager: return "General"
+    }
+  }
+  
   // returns a named tuple for each GuestType case (accessed by discounts.food, discounts.merchandise)
   var discounts: (food: Percent, merchandise: Percent) {
     let foodDiscount = DiscountType.food(managerFoodDiscount).discount

@@ -8,7 +8,9 @@
 
 import Foundation
 
+typealias SubType = String
 protocol ParkEntrant {
+  var subType: SubType { get }
   var accessAreas: [AccessArea] { get }
   var rideAccess: (allRides: Bool, skipsQueues: Bool) { get }
   var discounts: (food: Percent, merchandise: Percent) { get }

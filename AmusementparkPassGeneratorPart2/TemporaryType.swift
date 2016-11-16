@@ -40,6 +40,14 @@ extension TemporaryType {
       return [.dateOfBirth, .dateOfVisit, .firstName, .lastName, .companyName]
     }
   }
+  
+  var subType: SubType {
+    switch self {
+      case .contractEmployee: return "Contractor"
+      case .vendor: return "Vendor"
+    }
+  }
+  
   var accessAreas: [AccessArea] {
     get {
       switch self {

@@ -11,18 +11,44 @@ import UIKit
 class TestPassController: UIViewController {
   
   @IBOutlet weak var textView: UITextView!
+  @IBOutlet weak var nameLabel: UILabel!
+  @IBOutlet weak var passTypeLabel: UILabel!
+  @IBOutlet weak var rideAccessLabel: UILabel!
+  @IBOutlet weak var foodDiscountLabel: UILabel!
+  @IBOutlet weak var merchandiseDiscountLabel: UILabel!
   
   var entrantPass: PassType! = nil
   var cardReader = AccessCardReader.sharedCardReader
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    print(entrantPass)
+    setupPassLabels()
+  }
+  
+  override func viewWillLayoutSubviews() {
+    textView.textContainerInset = UIEdgeInsets(top: 50, left: 30, bottom: 30, right: 30)
   }
 
   override func didReceiveMemoryWarning() {
       super.didReceiveMemoryWarning()
       // Dispose of any resources that can be recreated.
+  }
+  
+  func setupPassLabels() {
+    // Default value in case guest name not known
+    var (firstName, lastName): (String, String) = ("Park", "Guest")
+    if let contactInfo = entrantPass.contactInfo {
+      (firstName, lastName) = (contactInfo.firstName, contactInfo.lastName)
+    }
+    nameLabel.text = "\(firstName.capitalized) \(lastName.capitalized)"
+    passTypeLabel.text = "\(entrantPass.type.subType)" + " Pass"
+    let (unlimitedRides, skipsLines) = (entrantPass.allRideAccess, entrantPass.skipsQueues)
+    var rideAccess = unlimitedRides ? "Unlimited Rides" : "No Ride Access"
+    rideAccess += skipsLines ? " & Skips Queues" : ""
+    rideAccessLabel.text = rideAccess
+    
+    foodDiscountLabel.text = "\(entrantPass.foodDiscount)% food discount"
+    merchandiseDiscountLabel.text = "\(entrantPass.merchandiseDiscount)% merchandise discount"
   }
   
   func setTextViewFor(success: Bool, message: AccessMessage) {
@@ -36,9 +62,11 @@ class TestPassController: UIViewController {
   @IBAction func testAreaAccess() {
     let alertController = UIAlertController(title: "Test Access Areas", message: "What Area would you like to test access for?", preferredStyle: .alert)
     let amusementAction = UIAlertAction(title: AccessArea.amusement.rawValue.capitalized, style: .default) { _ in
+      let result = self.cardReader.swipeAccess(self.entrantPass, hasAccessTo: .amusement)
+      self.setTextViewFor(success: result.hasAccess, message: result.message)
     }
     let kitchenAction = UIAlertAction(title: AccessArea.kitchen.rawValue.capitalized, style: .default) { _ in
-      let access = self.cardReader.swipeAccess(self.entrantPass, hasAccessTo: .rideControl)
+      let access = self.cardReader.swipeAccess(self.entrantPass, hasAccessTo: .kitchen)
       self.setTextViewFor(success: access.hasAccess, message: access.message)
     }
     let rideControlAction = UIAlertAction(title: AccessArea.rideControl.rawValue.capitalized, style: .default) { _ in
@@ -63,7 +91,7 @@ class TestPassController: UIViewController {
   @IBAction func testRideAccess() {
     let alert = UIAlertController(title: "Test RideAccess", message: "What access would you like to test for?", preferredStyle: .alert)
     let allRides = UIAlertAction(title: "Unlimited Rides", style: .default) { _ in
-      let access = self.cardReader.swipeAccess(self.entrantPass, hasRideAccess: .skipsQueues(self.entrantPass.allRideAccess))
+      let access = self.cardReader.swipeAccess(self.entrantPass, hasRideAccess: .allRides(self.entrantPass.allRideAccess))
       self.setTextViewFor(success: access.hasAccess, message: access.message)
     }
     let skipsLines = UIAlertAction(title: "Skip Queues", style: .default) { _ in
@@ -75,6 +103,20 @@ class TestPassController: UIViewController {
     present(alert, animated: true, completion: nil)
   }
   
+  @IBAction func testDiscountAccess() {
+    let alert = UIAlertController(title: "Test Discount Access", message: "Choose a discount to test for", preferredStyle: .alert)
+    let foodDiscount = UIAlertAction(title: "Food Discount", style: .default) { _ in
+      let result = self.cardReader.swipeAccess(self.entrantPass, discountFor: .food(self.entrantPass.foodDiscount))
+      self.setTextViewFor(success: result.hasAccess, message: result.message)
+    }
+    let merchandiseDiscount = UIAlertAction(title: "Merchandise Discount", style: .default) { _ in
+      let result = self.cardReader.swipeAccess(self.entrantPass, discountFor: .merchandise(self.entrantPass.foodDiscount))
+      self.setTextViewFor(success: result.hasAccess, message: result.message)
+    }
+    let actions = [foodDiscount, merchandiseDiscount]
+    _ = actions.map { alert.addAction($0) }
+    present(alert, animated: true, completion: nil)
+  }
 
   @IBAction func createNewPass() {
     entrantPass = nil

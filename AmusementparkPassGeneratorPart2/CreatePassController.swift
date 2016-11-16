@@ -43,7 +43,9 @@ class CreatePassController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
   
+  // MARK: IBAction Methods
   @IBAction func selectEntrantType(_ sender: UIButton) {
+    setColorsForButtons(inStack: entrantTypeStackView, selectedButton: sender)
     disableTextFields()
     if let entrantType = EntrantType(rawValue: sender.currentTitle!) {
       selectedEntrantType = entrantType
@@ -76,7 +78,9 @@ class CreatePassController: UIViewController {
       case .Contractor: info = dummyData.nameInformation
       case .Vendor: info = dummyData.vendorInfo
     }
-    let _ = info.map { (key, value) in activeTextFields[key]?.text = value }
+    UIView.animate(withDuration: 0.8) {
+      _ = info.map { (key, value) in self.activeTextFields[key]?.text = value }
+    }
   }
   
   // MARK: Create SubType Buttons
@@ -100,13 +104,23 @@ class CreatePassController: UIViewController {
   func addSubTypeButtons(withTitles titles: [String]) {
     for title in titles {
       let button = EntrantTypeButton()
+      let buttonColor = UIColor(red: 135/255.0, green: 126/255.0, blue: 145/255.0, alpha: 1.0)
       button.setTitle(title, for: .normal)
+      button.setTitleColor(buttonColor, for: .normal)
       entrantSubTypeStackView.addArrangedSubview(button)
       button.addTarget(self, action: #selector(CreatePassController.enableFieldsForSubType(_:)), for: .touchUpInside)
     }
   }
   
-  
+  // set a white color on the currently active entrantType/subtype button
+  func setColorsForButtons(inStack stackview: UIStackView, selectedButton: UIButton) {
+    _ = stackview.arrangedSubviews.map { view in
+      if let button = view as? UIButton {
+        let inactiveColor = UIColor(red: 189/255.0, green: 170/255.0, blue: 208/255.0, alpha: 1.0)
+        button.setTitleColor(button == selectedButton ? .white : inactiveColor, for: .normal)
+      }
+    }
+  }
   // get text out of active Textfields
   func createInfoDict() -> [InformationField: String] {
     var infoDict: [InformationField: String] = [:]
@@ -154,20 +168,21 @@ class CreatePassController: UIViewController {
   // MARK: Helpers to update textFields -- enable/disable/default values
   
   func enableFieldsForSubType(_ sender: UIButton) {
+    UIView.animate(withDuration: 0.5) {
+      self.setColorsForButtons(inStack: self.entrantSubTypeStackView, selectedButton: sender)
+    }
     disableTextFields()
     selectedSubType = sender.currentTitle!
     let tags: [Tag]
     switch selectedEntrantType {
     case .Guest:
       tags = GuestType.getRequiredFields(fromTitle: selectedSubType).map { $0.rawValue }
-      enableTextFields(withTags: tags)
     case .Employee, .Manager:
       tags = HourlyEmployeeType.getRequiredFields().map { $0.rawValue }
-      enableTextFields(withTags: tags)
     case .Contractor, .Vendor:
       tags = TemporaryType.getRequiredFields(fromTitle: selectedSubType).map { $0.rawValue }
-      enableTextFields(withTags: tags)
     }
+    UIView.animate(withDuration: 0.5) { self.enableTextFields(withTags: tags) }
   }
   
   func enableTextFields(withTags tags: [Tag]) {

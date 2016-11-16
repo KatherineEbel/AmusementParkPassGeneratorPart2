@@ -9,7 +9,7 @@
 enum AccessArea: String {
   case amusement
   case kitchen
-  case rideControl
+  case rideControl = "Ride Control"
   case maintenance
   case office
 }
