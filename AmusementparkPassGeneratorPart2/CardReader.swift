@@ -7,6 +7,7 @@
 //
 
 typealias AccessMessage = String
+// functions required to adopt CardReader protocol
 protocol CardReader {
   func areaAccess(forPass pass: PassType) -> AccessMessage
   func rideAccess(forPass pass: PassType) -> AccessMessage

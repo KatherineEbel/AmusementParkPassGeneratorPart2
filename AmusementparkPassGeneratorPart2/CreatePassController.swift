@@ -59,8 +59,8 @@ class CreatePassController: UIViewController {
         entrantPass = guestPass
         performSegue(withIdentifier: "testPass", sender: self)
       } else {
-        let alert = UIAlertController(title: "Sorry!", message: pass.message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Try again", style: .cancel, handler: nil)
+        let alert = UIAlertController(title: "Sorry, something went wrong!", message: pass.message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Try again?", style: .cancel, handler: nil)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
       }
@@ -158,6 +158,7 @@ class CreatePassController: UIViewController {
     return false
   }
   
+  // present an alert if any of the values entered were empty
   func alertEmptyValues() {
     let alert = UIAlertController(title: "Invalid input", message: "Fields cannot be empty", preferredStyle: .alert)
     let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)

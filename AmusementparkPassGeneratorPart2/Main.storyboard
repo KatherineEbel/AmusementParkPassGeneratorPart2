@@ -568,10 +568,10 @@
                                     <constraint firstItem="7zq-FS-UKu" firstAttribute="centerY" secondItem="y8o-Hz-crc" secondAttribute="centerY" id="SsQ-Fu-O4s"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hLb-FW-bBn">
-                                <rect key="frame" x="20" y="100" width="728" height="904"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hLb-FW-bBn">
+                                <rect key="frame" x="20" y="100" width="728" height="886"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Sqa-zp-dda" userLabel="PassView">
+                                    <view contentMode="scaleToFill" horizontalHuggingPriority="260" verticalHuggingPriority="260" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Sqa-zp-dda" userLabel="PassView">
                                         <rect key="frame" x="0.0" y="0.0" width="728" height="360"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FaceImageAsset" translatesAutoresizingMaskIntoConstraints="NO" id="LVE-cY-VPA">
@@ -655,19 +655,19 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Access Testing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U8x-IU-CZD">
-                                        <rect key="frame" x="230" y="402" width="268.5" height="61"/>
+                                        <rect key="frame" x="230" y="402" width="268.5" height="43"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="36"/>
                                         <color key="textColor" red="0.36862745098039218" green="0.36078431372549019" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm the pass has the expected level of access when swiped at the kiosk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxd-h1-z8E">
-                                        <rect key="frame" x="14.5" y="483" width="699" height="24"/>
+                                        <rect key="frame" x="14.5" y="465" width="699" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <color key="textColor" red="0.57647058823529407" green="0.56470588235294117" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="JUj-zD-GGX">
-                                        <rect key="frame" x="20" y="527" width="688" height="41"/>
+                                        <rect key="frame" x="20" y="509" width="688" height="41"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="260" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K63-lm-mNo">
                                                 <rect key="frame" x="0.0" y="0.0" width="216" height="41"/>
@@ -717,7 +717,7 @@
                                         </subviews>
                                     </stackView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="250" editable="NO" text="Test Results" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H91-Qr-ets">
-                                        <rect key="frame" x="0.0" y="588" width="728" height="250"/>
+                                        <rect key="frame" x="0.0" y="570" width="728" height="250"/>
                                         <color key="backgroundColor" red="0.79607843137254897" green="0.77647058823529413" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="250" id="27b-1l-pGs"/>
@@ -733,7 +733,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="255" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3X3-xS-mFR">
-                                        <rect key="frame" x="241.5" y="858" width="245" height="46"/>
+                                        <rect key="frame" x="241.5" y="840" width="245" height="46"/>
                                         <color key="backgroundColor" red="0.79607843137254897" green="0.77647058823529413" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="245" id="Skv-Bf-eyZ"/>
@@ -769,12 +769,18 @@
                             <constraint firstItem="hLb-FW-bBn" firstAttribute="top" secondItem="y8o-Hz-crc" secondAttribute="bottom" constant="20" id="dCq-V2-pyr"/>
                             <constraint firstAttribute="bottom" secondItem="hLb-FW-bBn" secondAttribute="bottom" constant="20" id="f7q-wd-iQ2"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="f7q-wd-iQ2"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="foodDiscountLabel" destination="gxW-RH-tRM" id="J4D-K3-G8h"/>
                         <outlet property="merchandiseDiscountLabel" destination="Aq7-pF-SXd" id="MpV-Fu-8KE"/>
                         <outlet property="nameLabel" destination="ldT-gF-Oe2" id="neS-08-ePa"/>
                         <outlet property="passTypeLabel" destination="NQh-jm-8vm" id="gfi-c1-VgQ"/>
+                        <outlet property="passView" destination="Sqa-zp-dda" id="sI8-JK-Hd2"/>
                         <outlet property="rideAccessLabel" destination="kKR-b8-FCc" id="OR0-Dn-53m"/>
                         <outlet property="textView" destination="H91-Qr-ets" id="Vyv-ub-GSW"/>
                     </connections>

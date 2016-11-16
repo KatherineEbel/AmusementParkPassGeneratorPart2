@@ -16,16 +16,22 @@ class TestPassController: UIViewController {
   @IBOutlet weak var rideAccessLabel: UILabel!
   @IBOutlet weak var foodDiscountLabel: UILabel!
   @IBOutlet weak var merchandiseDiscountLabel: UILabel!
-  
+  @IBOutlet weak var passView: UIView!
   var entrantPass: PassType! = nil
   var cardReader = AccessCardReader.sharedCardReader
   
   override func viewDidLoad() {
     super.viewDidLoad()
     setupPassLabels()
+    passView.alpha = 0
   }
   
+  override func viewDidAppear(_ animated: Bool) {
+    // little animation when the pass loads
+    UIView.animate(withDuration: 0.5) { self.passView.alpha = 1.0}
+  }
   override func viewWillLayoutSubviews() {
+    // set the text down so not so close to borders of textView
     textView.textContainerInset = UIEdgeInsets(top: 50, left: 30, bottom: 30, right: 30)
   }
 
@@ -40,6 +46,7 @@ class TestPassController: UIViewController {
     if let contactInfo = entrantPass.contactInfo {
       (firstName, lastName) = (contactInfo.firstName, contactInfo.lastName)
     }
+    // Normalize the firstName lastName values by capitalizing them
     nameLabel.text = "\(firstName.capitalized) \(lastName.capitalized)"
     passTypeLabel.text = "\(entrantPass.type.subType)" + " Pass"
     let (unlimitedRides, skipsLines) = (entrantPass.allRideAccess, entrantPass.skipsQueues)
@@ -58,6 +65,10 @@ class TestPassController: UIViewController {
     self.textView.textColor = .white
     self.textView.text = message
   }
+  
+  // I chose to use alert controllers to keep the UI a little cleaner, and offer several options
+  // for testing access. A better solution would probably be to make a custom popup, but this solution
+  // seemed the most straight forward.
   
   // MARK: Test Area Access
   @IBAction func testAreaAccess() {
@@ -109,6 +120,7 @@ class TestPassController: UIViewController {
   @IBAction func testDiscountAccess() {
     let alert = UIAlertController(title: "Test Discount Access", message: "Choose a discount to test for", preferredStyle: .alert)
     let foodDiscount = UIAlertAction(title: "Food Discount", style: .default) { _ in
+      //result will be a tuple with bool for if pass has access, and mesage to display in textView
       let result = self.cardReader.swipeAccess(self.entrantPass, discountFor: .food(self.entrantPass.foodDiscount))
       self.setTextViewFor(success: result.hasAccess, message: result.message)
     }
@@ -116,25 +128,15 @@ class TestPassController: UIViewController {
       let result = self.cardReader.swipeAccess(self.entrantPass, discountFor: .merchandise(self.entrantPass.merchandiseDiscount))
       self.setTextViewFor(success: result.hasAccess, message: result.message)
     }
+    // add all the actions to the alert
     let actions = [foodDiscount, merchandiseDiscount]
     _ = actions.map { alert.addAction($0) }
     present(alert, animated: true, completion: nil)
   }
 
+  // simply dismisses view controller and empties entrant pass value
   @IBAction func createNewPass() {
     entrantPass = nil
     dismiss(animated: true, completion: nil)
   }
-  
-  
-  /*
-  // MARK: - Navigation
-
-  // In a storyboard-based application, you will often want to do a little preparation before navigation
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-      // Get the new view controller using segue.destinationViewController.
-      // Pass the selected object to the new view controller.
-  }
-  */
-
 }

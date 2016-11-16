@@ -6,6 +6,7 @@
 //  Copyright © 2016 Katherine Ebel. All rights reserved.
 //
 
+// all ParkEntrant protocol adopters must have a property to get value for ride access
 enum RideAccess {
   case allRides(Bool)
   case skipsQueues(Bool)

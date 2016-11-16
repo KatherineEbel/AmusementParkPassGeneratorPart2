@@ -10,7 +10,8 @@ import Foundation
 
 // date format must be "yyyy/MM/dd"
 typealias BirthDate = String
-fileprivate let seniorAge: TimeInterval = 65
+private let seniorAge: TimeInterval = 65
+private let maxChildAge: Double = 5
 
 // Currently only GuestTypes are AgeVerifiable
 protocol AgeVerifiable {
@@ -31,6 +32,7 @@ extension AgeVerifiable {
     return seconds / numSecInYear
   }
   
+  // calculates an age in years from a given date string in format "yyyy/mm/dd"
   func ageFrom(dateString string: BirthDate) throws -> TimeInterval {
     let today = Date()
     guard let birthdate = AccessPassGenerator.AccessPass.dateFormatter.date(from: string) else {
@@ -44,10 +46,10 @@ extension AgeVerifiable {
     do {
       let age = try ageFrom(dateString: string)
       print(age)
-      guard age < 5 else {
+      guard age < maxChildAge else {
         throw AccessPassError.FailsChildAgeRequirement(message: "Child does not meet age requirements for a free child pass")
       }
-      return age < 5
+      return age < maxChildAge
     }
   }
   

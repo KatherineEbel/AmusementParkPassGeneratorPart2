@@ -8,6 +8,8 @@
 
 typealias Percent = Int
 
+
+// all ParkEntrant protocol adopters must have a property to get value for food and merch discounts
 enum DiscountType {
   case food(Percent)
   case merchandise(Percent)

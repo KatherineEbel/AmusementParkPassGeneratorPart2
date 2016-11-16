@@ -27,7 +27,7 @@ extension ManagerType {
   }
   
   static var allTypes: [String] {
-    return ["General"]
+    return ["General Manager"]
   }
   static func getRequiredFields() -> [InformationField] {
     return [.firstName, .lastName, .streetAddress, .city, .state, .zipCode]
@@ -35,7 +35,7 @@ extension ManagerType {
   
   var subType: SubType {
     switch self {
-      case .manager: return "General"
+      case .manager: return "General Manager"
     }
   }
   

@@ -11,8 +11,3 @@ import Foundation
 protocol Contactable {
   var contactDetails: String { get }
 }
-
-// adds contactDetails property
-extension Contactable {
-  // returns nice formatted details for a Contactable park entrant
-}

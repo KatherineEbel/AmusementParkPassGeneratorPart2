@@ -16,6 +16,7 @@ protocol ParkEntrant {
   var discounts: (food: Percent, merchandise: Percent) { get }
 }
 
+// default implementations for protocol
 extension ParkEntrant {
   var accessAreas: [AccessArea] {
     return [.amusement]
