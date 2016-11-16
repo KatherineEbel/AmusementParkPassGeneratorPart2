@@ -64,10 +64,10 @@ extension TemporaryType {
     return (false, false)
   }
   // returns instance of ContactInformation for an instance of manager type
-  var contactInformation: Contactable {
+  var contactInformation: ContactInformation {
     switch self {
-      case .vendor(info: let info): return info as! Contactable
-      case .contractEmployee(info: let info, accessAreas: _): return info as Contactable
+      case .vendor(info: let info, accessAreas: _): return info.contactInfo
+      case .contractEmployee(info: let info, accessAreas: _): return info
     }
   }
   

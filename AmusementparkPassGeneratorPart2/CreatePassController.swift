@@ -119,6 +119,7 @@ class CreatePassController: UIViewController {
       let buttonColor = UIColor(red: 135/255.0, green: 126/255.0, blue: 145/255.0, alpha: 1.0)
       button.setTitle(title, for: .normal)
       button.setTitleColor(buttonColor, for: .normal)
+      button.titleLabel?.font = UIFont.systemFont(ofSize: 18.0, weight: UIFontWeightBold)
       entrantSubTypeStackView.addArrangedSubview(button)
       button.addTarget(self, action: #selector(CreatePassController.enableFieldsForSubType(_:)), for: .touchUpInside)
     }

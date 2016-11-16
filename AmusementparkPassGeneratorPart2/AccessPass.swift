@@ -61,6 +61,9 @@ extension AccessPassGenerator.AccessPass {
     case is ManagerType:
       let managerType = type as! ManagerType
       return managerType.contactInformation
+    case is TemporaryType:
+      let temporaryType = type as! TemporaryType
+      return temporaryType.contactInformation
     default:
       return nil
     }
