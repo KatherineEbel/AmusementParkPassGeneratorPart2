@@ -15,10 +15,12 @@ extension CreatePassController: UITextFieldDelegate {
     }
   }
   
+  
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
     guard string.characters.count > 0 else {
       return true
     }
+    // if textfields are of AllowedCharactersTextField class, this will allow them to only use provided characters in Interface builder
     if let textField = textField as? AllowedCharactersTextField {
       let currentText = textField.text ?? ""
       let prospectiveText = (currentText as NSString).replacingCharacters(in: range, with: string)
@@ -26,5 +28,14 @@ extension CreatePassController: UITextFieldDelegate {
     } else {
       return true
     }
+  }
+  
+  // require fields to be at least 2 characters before accepting return key
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    guard (textField.text?.characters.count)! >= 2 else {
+      return false
+    }
+    textField.resignFirstResponder()
+    return true
   }
 }

@@ -30,6 +30,10 @@ class ContactInformation: Contactable {
   
   init?(withDictionary info: [InformationField: String]) {
    do {
+    // fail early if empty values included
+    guard !ContactInformation.hasEmptyValues(infoDictionary: info) else {
+      throw AccessPassError.InvalidContactInfoProvided(message: "Empty values cannot be accepted")
+    }
      if let firstName = info[.firstName], let lastName = info[.lastName],
        let streetAddress = info[.streetAddress], let city = info[.city],
        let state = info[.state], let zipCode = info[.zipCode] {
@@ -55,6 +59,15 @@ class ContactInformation: Contactable {
 extension ContactInformation {
   convenience init(firstName: String, lastName: String) {
     self.init(firstName: firstName, lastName: lastName, streetAddress: nil, city: nil, state: nil, zipCode: nil)
+  }
+  
+  static func hasEmptyValues(infoDictionary dict: [InformationField: String]) -> Bool {
+    for (_, value) in dict {
+      if value.isEmpty {
+        return true
+      }
+    }
+    return false
   }
   
   var contactDetails: String {

@@ -15,10 +15,8 @@ class CreatePassController: UIViewController {
   @IBOutlet weak var entrantTypeStackView: UIStackView!
   @IBOutlet weak var entrantSubTypeStackView: UIStackView!
   @IBOutlet weak var mainStackViewTopConstraint: NSLayoutConstraint!
-
   @IBOutlet var informationStackViews: [UIStackView]!
-
-  @IBOutlet weak var companyNameStackView: UIStackView!
+  @IBOutlet weak var tapToDismissKeyboard: UITapGestureRecognizer!
   
   let passGenerator = AccessPassGenerator.passGenerator
   var selectedEntrantType: EntrantType = .Guest
@@ -52,8 +50,10 @@ class CreatePassController: UIViewController {
     }
   }
   
+  // creates pass and triggers segue if pass creation successful, otherwise
+  // alerts user.
   @IBAction func generatePassButtonPressed() {
-    if let guest = guestWithInfo(infoDict: createInfoDict()) {
+    if let infoDict = createInfoDict(), let guest = guestWithInfo(infoDict: infoDict) {
       let pass = passGenerator.createPass(forEntrant: guest)
       if let guestPass = pass.entrantPass {
         entrantPass = guestPass
@@ -67,6 +67,7 @@ class CreatePassController: UIViewController {
     }
   }
   
+  // Fills required fields with valid data needed to create a pass
   @IBAction func populateDataButtonPressed() {
     guard !activeTextFields.isEmpty else {
       return
@@ -87,6 +88,11 @@ class CreatePassController: UIViewController {
     UIView.animate(withDuration: 0.8) {
       _ = info.map { (key, value) in self.activeTextFields[key]?.text = value }
     }
+  }
+  
+  // allows user to tap outside of the textfield to dismiss keyboard
+  @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+    activeTextField.resignFirstResponder()
   }
   
   // MARK: Create SubType Buttons
@@ -128,40 +134,64 @@ class CreatePassController: UIViewController {
     }
   }
   // get text out of active Textfields and converts it to a dictionary with info fields and String values
-  func createInfoDict() -> [InformationField: String] {
-    return activeTextFields.reduce([InformationField: String](), {(result, nextValue) in
+  func createInfoDict() -> [InformationField: String]? {
+     let passInfo = activeTextFields.reduce([InformationField: String](), {(result, nextValue) in
       var dict = result
       dict.updateValue(nextValue.value.text!, forKey: nextValue.key)
       return dict
     })
+    if hasEmptyValues(inDictionary: passInfo) {
+      alertEmptyValues()
+      return nil
+    } else {
+      return passInfo
+    }
+  }
+  
+  // prevents any empty values from being submitted
+  func hasEmptyValues(inDictionary dictionary: [InformationField: String]) -> Bool {
+    for (_, value) in dictionary {
+      if value.isEmpty {
+        return true
+      }
+    }
+    return false
+  }
+  
+  func alertEmptyValues() {
+    let alert = UIAlertController(title: "Invalid input", message: "Fields cannot be empty", preferredStyle: .alert)
+    let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+    alert.addAction(action)
+    present(alert, animated: true, completion: nil)
   }
   
   // allows dictionary to be passed in and returns the right ParkEntrant type
   func guestWithInfo(infoDict dict: [InformationField: String]) -> ParkEntrant? {
     var parkGuest: ParkEntrant? = nil
-    let passInfo = createInfoDict()
-    switch selectedEntrantType {
-    case .Guest:
-      if let guest = GuestType.guestType(forType: selectedSubType, withInfo: passInfo) {
-        parkGuest = guest
-      }
-    case .Employee:
-      if let employee = HourlyEmployeeType.employee(forType: selectedSubType, withInfo: passInfo) {
-        parkGuest = employee
-      }
-    case .Manager:
-      if let manager = ManagerType.managerType(forSubType: selectedSubType, withInfo: passInfo) {
-        parkGuest = manager
-      }
-    case .Contractor:
-      let accessAreas = (passGenerator.openProjects.filter { $0.identificationNumber == Int(selectedSubType) }.first!).accessAreas
-      if let tempType = TemporaryType.temporaryType(forEntrantType: selectedEntrantType, withInfo: passInfo, accessAreas: accessAreas) {
-        parkGuest = tempType
-      }
-    case .Vendor:
-      let accessAreas = (passGenerator.allowedVendors.filter { $0.companyName == selectedSubType }).first!.accessAreas
-      if let tempType = TemporaryType.temporaryType(forEntrantType: selectedEntrantType, withInfo: passInfo, accessAreas: accessAreas) {
-        parkGuest = tempType
+    if let passInfo = createInfoDict() {
+      switch selectedEntrantType {
+      case .Guest:
+        if let guest = GuestType.guestType(forType: selectedSubType, withInfo: passInfo) {
+          parkGuest = guest
+        }
+      case .Employee:
+        if let employee = HourlyEmployeeType.employee(forType: selectedSubType, withInfo: passInfo) {
+          parkGuest = employee
+        }
+      case .Manager:
+        if let manager = ManagerType.managerType(forSubType: selectedSubType, withInfo: passInfo) {
+          parkGuest = manager
+        }
+      case .Contractor:
+        let accessAreas = (passGenerator.openProjects.filter { $0.identificationNumber == Int(selectedSubType) }.first!).accessAreas
+        if let tempType = TemporaryType.temporaryType(forEntrantType: selectedEntrantType, withInfo: passInfo, accessAreas: accessAreas) {
+          parkGuest = tempType
+        }
+      case .Vendor:
+        let accessAreas = (passGenerator.allowedVendors.filter { $0.companyName == selectedSubType }).first!.accessAreas
+        if let tempType = TemporaryType.temporaryType(forEntrantType: selectedEntrantType, withInfo: passInfo, accessAreas: accessAreas) {
+          parkGuest = tempType
+        }
       }
     }
     if let parkGuest = parkGuest {
@@ -248,31 +278,31 @@ class CreatePassController: UIViewController {
     }
   }
   
-  
+  // MARK: Manage Keyboard
   func keyboardWillShow(notification: NSNotification) {
     // in portrait, the only textfields that are covered are the ones in the bottom row, so move keyboard for those
+    let textFieldsToMove = [activeTextFields[.streetAddress], activeTextFields[.city], activeTextFields[.state], activeTextFields[.zipCode]]
     if let userInfoDict = notification.userInfo,
       let keyboardFrameValue = userInfoDict[UIKeyboardFrameEndUserInfoKey] as? NSValue {
       let keyboardFrame = keyboardFrameValue.cgRectValue
-      let shouldMove = activeTextField == activeTextFields[.city] || activeTextField == activeTextFields[.state] || activeTextField == activeTextFields[.zipCode]
-      if shouldMove {
-        UIView.animate(withDuration: 0.8) {
-          self.mainStackViewTopConstraint.constant = 100 - keyboardFrame.size.height - 30
-          self.view.layoutIfNeeded()
-        }
+      if textFieldsToMove.contains(where: { (textField) -> Bool in textField == activeTextField }) {
+      UIView.animate(withDuration: 0.8) {
+        self.mainStackViewTopConstraint.constant = 100 - keyboardFrame.size.height
+        self.view.layoutIfNeeded()
+      }
+        
       }
     }
   }
   
   func keyboardWillHide(notification: NSNotification) {
-    print("Keyboard will hide")
     UIView.animate(withDuration: 0.8) {
-      print("Animating")
       self.mainStackViewTopConstraint.constant = 100.0
       self.view.layoutIfNeeded()
     }
   }
   
+  // MARK: Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "testPass" {
       let testPassController = segue.destination as! TestPassController

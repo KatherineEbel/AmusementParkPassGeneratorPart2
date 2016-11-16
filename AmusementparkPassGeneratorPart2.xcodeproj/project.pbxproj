@@ -147,9 +147,6 @@
 				27D58A4E1DD4D4650026C9D7 /* Assets.xcassets */,
 				27D58A501DD4D4650026C9D7 /* LaunchScreen.storyboard */,
 				27D58A531DD4D4650026C9D7 /* Info.plist */,
-				4469C4EF1DD943D700541798 /* TextFieldDelegate.swift */,
-				4469C4F71DDB2C5F00541798 /* UIViewExtension.swift */,
-				4469C4F91DDC7A1100541798 /* AllowedCharactersTextField.swift */,
 			);
 			path = AmusementparkPassGeneratorPart2;
 			sourceTree = "<group>";
@@ -199,15 +196,18 @@
 			isa = PBXGroup;
 			children = (
 				27D58A601DD4D4E30026C9D7 /* AccessPassError.swift */,
-				27D58A641DD4D4E30026C9D7 /* ContactInformation.swift */,
-				27D58A851DD4E58E0026C9D7 /* VendorVisit.swift */,
-				27D58A891DD506450026C9D7 /* Project.swift */,
-				278D2ED11DD5E59800E058D0 /* ContractEmployeeInformation.swift */,
-				278D2ED31DD626B400E058D0 /* Vendor.swift */,
 				278D2ED51DD74ACC00E058D0 /* AccessSoundCue.swift */,
-				2748CA611DD9017700E790CA /* InformationField.swift */,
+				4469C4F91DDC7A1100541798 /* AllowedCharactersTextField.swift */,
+				27D58A641DD4D4E30026C9D7 /* ContactInformation.swift */,
+				278D2ED11DD5E59800E058D0 /* ContractEmployeeInformation.swift */,
 				4469C4F11DD9E82F00541798 /* CreatePassControllerError.swift */,
 				4469C4F51DDA698C00541798 /* DummyData.swift */,
+				2748CA611DD9017700E790CA /* InformationField.swift */,
+				27D58A891DD506450026C9D7 /* Project.swift */,
+				4469C4EF1DD943D700541798 /* TextFieldDelegate.swift */,
+				4469C4F71DDB2C5F00541798 /* UIViewExtension.swift */,
+				278D2ED31DD626B400E058D0 /* Vendor.swift */,
+				27D58A851DD4E58E0026C9D7 /* VendorVisit.swift */,
 			);
 			name = Helper/ErrorTypes;
 			sourceTree = "<group>";

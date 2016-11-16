@@ -498,6 +498,7 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.85882352939999995" green="0.83921568629999999" blue="0.87450980389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="V9b-1I-JmH" firstAttribute="leading" secondItem="J0a-Y4-UNG" secondAttribute="leadingMargin" constant="20" id="HoH-p5-wdH"/>
                             <constraint firstItem="pGW-Uf-9qQ" firstAttribute="leading" secondItem="J0a-Y4-UNG" secondAttribute="leading" id="bQS-HG-Svk"/>
@@ -506,6 +507,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="V9b-1I-JmH" secondAttribute="trailing" constant="20" id="vct-IF-6um"/>
                             <constraint firstItem="pGW-Uf-9qQ" firstAttribute="top" secondItem="J0a-Y4-UNG" secondAttribute="top" id="vhu-I4-STW"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="wjf-Km-JKM" appends="YES" id="gdh-RC-qBj"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="entrantSubTypeStackView" destination="HL3-IV-kQA" id="xGr-ZI-cnr"/>
@@ -527,6 +531,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G9f-uR-Xnk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="wjf-Km-JKM">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="eey-6G-JNA" id="7cD-DG-7aT"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="569.53125" y="-32.2265625"/>
         </scene>
