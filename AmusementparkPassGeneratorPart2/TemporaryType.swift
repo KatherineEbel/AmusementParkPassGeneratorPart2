@@ -63,7 +63,7 @@ extension TemporaryType {
   var rideAccess: (allRides: Bool, skipsQueues: Bool) {
     return (false, false)
   }
-  // returns instance of ContactInformation for an instance of manager type
+  // returns instance of ContactInformation for an instance of temporaryType
   var contactInformation: ContactInformation {
     switch self {
       case .vendor(info: let info, accessAreas: _): return info.contactInfo
@@ -71,6 +71,7 @@ extension TemporaryType {
     }
   }
   
+  // returns a string representation of contact info
   var contactDetails: String {
     switch self {
     case .contractEmployee(info: let contractEmployee):
