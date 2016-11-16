@@ -14,4 +14,17 @@ extension CreatePassController: UITextFieldDelegate {
       activeTextField = currentTextField.value
     }
   }
+  
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    guard string.characters.count > 0 else {
+      return true
+    }
+    if let textField = textField as? AllowedCharactersTextField {
+      let currentText = textField.text ?? ""
+      let prospectiveText = (currentText as NSString).replacingCharacters(in: range, with: string)
+      return prospectiveText.containsOnlyCharacters(matchCharacters: textField.allowedCharacters)
+    } else {
+      return true
+    }
+  }
 }

@@ -59,6 +59,7 @@ class TestPassController: UIViewController {
     self.textView.text = message
   }
   
+  // MARK: Test Area Access
   @IBAction func testAreaAccess() {
     let alertController = UIAlertController(title: "Test Access Areas", message: "What Area would you like to test access for?", preferredStyle: .alert)
     let amusementAction = UIAlertAction(title: AccessArea.amusement.rawValue.capitalized, style: .default) { _ in
@@ -88,6 +89,7 @@ class TestPassController: UIViewController {
     }
   }
   
+  // MARK: Test Ride Access
   @IBAction func testRideAccess() {
     let alert = UIAlertController(title: "Test RideAccess", message: "What access would you like to test for?", preferredStyle: .alert)
     let allRides = UIAlertAction(title: "Unlimited Rides", style: .default) { _ in
@@ -103,6 +105,7 @@ class TestPassController: UIViewController {
     present(alert, animated: true, completion: nil)
   }
   
+  // MARK: Test Discount Access
   @IBAction func testDiscountAccess() {
     let alert = UIAlertController(title: "Test Discount Access", message: "Choose a discount to test for", preferredStyle: .alert)
     let foodDiscount = UIAlertAction(title: "Food Discount", style: .default) { _ in
@@ -110,7 +113,7 @@ class TestPassController: UIViewController {
       self.setTextViewFor(success: result.hasAccess, message: result.message)
     }
     let merchandiseDiscount = UIAlertAction(title: "Merchandise Discount", style: .default) { _ in
-      let result = self.cardReader.swipeAccess(self.entrantPass, discountFor: .merchandise(self.entrantPass.foodDiscount))
+      let result = self.cardReader.swipeAccess(self.entrantPass, discountFor: .merchandise(self.entrantPass.merchandiseDiscount))
       self.setTextViewFor(success: result.hasAccess, message: result.message)
     }
     let actions = [foodDiscount, merchandiseDiscount]

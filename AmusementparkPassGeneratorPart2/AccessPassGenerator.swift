@@ -41,57 +41,59 @@ final class AccessPassGenerator {
     }
   }
   
-  // the only public access point to create passes
-  public func createPass(forEntrant entrant: ParkEntrant) -> AccessPass {
+  // the only public access point to create passes -- returns an optional pass and a message with success result
+  public func createPass(forEntrant entrant: ParkEntrant) -> (entrantPass: AccessPass?, message: AccessMessage) {
     if entrant is GuestType {
-      return pass(forVerifiedEntrant: entrant as! GuestType)
+      if let result = pass(forVerifiedEntrant: entrant as! GuestType) {
+        return (result.pass, result.message)
+      }
     }
     if entrant is HourlyEmployeeType {
-      return AccessPass(type: entrant as! HourlyEmployeeType)
+      return (AccessPass(type: entrant as! HourlyEmployeeType), "")
     }
     if entrant is ManagerType {
-      return AccessPass(type: entrant as! ManagerType)
+      return (AccessPass(type: entrant as! ManagerType), "")
     }
     if entrant is TemporaryType {
       do {
         let tempPass = try pass(forTempEntrant: entrant as! TemporaryType)
-        return tempPass
+        return (tempPass, "Success")
       } catch AccessPassError.InvalidProjectNumber(message: let message) {
-          print(message)
+        return (nil, message)
         
       } catch AccessPassError.InvalidVendor(message: let message) {
-        print(message)
+        return (nil, message)
       } catch let error {
-        print(error)
+        return (nil, "\(error)")
       }
     }
-    // should never get to this final case
-    return AccessPass(type: GuestType.classic)
+    // should never get to this point
+    return (nil, "Unable to create pass for give entries")
   }
   
   
   // the only pass that needs to be verified is the free child pass -- since no UI currently present
   // default to displaying message and create classic pass for unverified/ or incorrectly formatted dates
-  private func pass(forVerifiedEntrant entrant: GuestType) -> AccessPass {
+  private func pass(forVerifiedEntrant entrant: GuestType) -> (pass: AccessPass?, message: AccessMessage)? {
     switch entrant {
-    case .classic: return AccessPass(type: GuestType.classic)
-    case .VIP: return AccessPass(type: GuestType.VIP)
+    case .classic: return (AccessPass(type: GuestType.classic), "Success")
+    case .VIP: return (AccessPass(type: GuestType.VIP), "Success")
     case .freeChild(birthdate: let birthDate):
       let pass = AccessPass(type: GuestType.freeChild(birthdate: birthDate))
-        if pass.isVerified {
-           return pass
+        if pass.isVerified.success {
+           return (pass, "Success")
         } else {
-          return AccessPass(type: GuestType.classic)
+          return (nil, pass.isVerified.message!)
         }
     case .senior(birthdate: let date, contactInfo: let info):
       let pass = AccessPass(type: GuestType.senior(birthdate: date, contactInfo: info))
-        if pass.isVerified {
-           return pass
+        if pass.isVerified.success {
+           return (pass, "Success")
         } else {
-          return AccessPass(type: GuestType.classic)
+          return (nil, pass.isVerified.message!)
         }
     case .seasonPass(let contactInfo):
-      return AccessPass(type: GuestType.seasonPass(contactInfo))
+      return (AccessPass(type: GuestType.seasonPass(contactInfo)), "Success")
     }
   }
   

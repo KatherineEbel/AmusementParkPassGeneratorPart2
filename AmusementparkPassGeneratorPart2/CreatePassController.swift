@@ -21,9 +21,8 @@ class CreatePassController: UIViewController {
   @IBOutlet weak var companyNameStackView: UIStackView!
   
   let passGenerator = AccessPassGenerator.passGenerator
-  let cardReader = AccessCardReader.sharedCardReader
   var selectedEntrantType: EntrantType = .Guest
-  var selectedSubType: String = "Classic"
+  var selectedSubType: SubType = GuestType.classic.subType
   var activeTextFields: [InformationField : UITextField] = [:]
   var activeTextField: UITextField = UITextField()
   let dummyData = DummyData()
@@ -56,8 +55,15 @@ class CreatePassController: UIViewController {
   @IBAction func generatePassButtonPressed() {
     if let guest = guestWithInfo(infoDict: createInfoDict()) {
       let pass = passGenerator.createPass(forEntrant: guest)
-      entrantPass = pass
-      performSegue(withIdentifier: "testPass", sender: self)
+      if let guestPass = pass.entrantPass {
+        entrantPass = guestPass
+        performSegue(withIdentifier: "testPass", sender: self)
+      } else {
+        let alert = UIAlertController(title: "Sorry!", message: pass.message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Try again", style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+      }
     }
   }
   
@@ -75,7 +81,7 @@ class CreatePassController: UIViewController {
           default: break
         }
       case .Employee, .Manager: info = dummyData.contactInformation
-      case .Contractor: info = dummyData.nameInformation
+      case .Contractor: info = dummyData.contactInformation
       case .Vendor: info = dummyData.vendorInfo
     }
     UIView.animate(withDuration: 0.8) {
@@ -103,7 +109,7 @@ class CreatePassController: UIViewController {
   // dynamically adds needed buttons depending on the given titles -- determined by setSubtypes function
   func addSubTypeButtons(withTitles titles: [String]) {
     for title in titles {
-      let button = EntrantTypeButton()
+      let button = UIButton(type: .system)
       let buttonColor = UIColor(red: 135/255.0, green: 126/255.0, blue: 145/255.0, alpha: 1.0)
       button.setTitle(title, for: .normal)
       button.setTitleColor(buttonColor, for: .normal)
@@ -112,7 +118,7 @@ class CreatePassController: UIViewController {
     }
   }
   
-  // set a white color on the currently active entrantType/subtype button
+  // set a white color on the currently active entrantType/subtype button and darken the others
   func setColorsForButtons(inStack stackview: UIStackView, selectedButton: UIButton) {
     _ = stackview.arrangedSubviews.map { view in
       if let button = view as? UIButton {
@@ -121,13 +127,13 @@ class CreatePassController: UIViewController {
       }
     }
   }
-  // get text out of active Textfields
+  // get text out of active Textfields and converts it to a dictionary with info fields and String values
   func createInfoDict() -> [InformationField: String] {
-    var infoDict: [InformationField: String] = [:]
-    let _ = activeTextFields.map { (key, value) in
-      infoDict.updateValue(value.text!, forKey: key)
-    }
-    return infoDict
+    return activeTextFields.reduce([InformationField: String](), {(result, nextValue) in
+      var dict = result
+      dict.updateValue(nextValue.value.text!, forKey: nextValue.key)
+      return dict
+    })
   }
   
   // allows dictionary to be passed in and returns the right ParkEntrant type
@@ -168,12 +174,15 @@ class CreatePassController: UIViewController {
   // MARK: Helpers to update textFields -- enable/disable/default values
   
   func enableFieldsForSubType(_ sender: UIButton) {
+    // when subtype button is clicked, first highlight the selected button
     UIView.animate(withDuration: 0.5) {
       self.setColorsForButtons(inStack: self.entrantSubTypeStackView, selectedButton: sender)
     }
-    disableTextFields()
+    disableTextFields() // if there are any textfields already active, clear the text and disable them
+    // update the property for selected subtype
     selectedSubType = sender.currentTitle!
     let tags: [Tag]
+    // get the required fields depending on the selected entrant and subtype
     switch selectedEntrantType {
     case .Guest:
       tags = GuestType.getRequiredFields(fromTitle: selectedSubType).map { $0.rawValue }
@@ -182,17 +191,19 @@ class CreatePassController: UIViewController {
     case .Contractor, .Vendor:
       tags = TemporaryType.getRequiredFields(fromTitle: selectedSubType).map { $0.rawValue }
     }
+    // animate the texfields into not disabled state
     UIView.animate(withDuration: 0.5) { self.enableTextFields(withTags: tags) }
   }
   
   func enableTextFields(withTags tags: [Tag]) {
     // find all of the required textFields
     let views = informationStackViews.flatMap { $0.arrangedSubviews }
+    // all the textFields have an associated tag to more easily identify it ** rawValue for InformationField enum
     let textFields = (views.filter { tags.contains($0.tag) }).map { $0 as! UITextField }
     // add required fields to activeTextFields dict and enable them
     let _ = textFields.enumerated().map { (index, textField) in
       let tag = InformationField(rawValue: tags[index])!
-      activeTextFields.updateValue(textField, forKey: tag)
+      activeTextFields.updateValue(textField, forKey: tag) // associates a information field with a textfield
       textField.text = ""
       textField.isUserInteractionEnabled = true
       textField.backgroundColor = .white
@@ -200,7 +211,10 @@ class CreatePassController: UIViewController {
     fillDefaultValuesForFields()
   }
   
+  // fills in default values for contractor and vendors since they are required to have certain project and
+  // vendor company names
   func fillDefaultValuesForFields() {
+    // return early if no default values needed
     guard selectedEntrantType == .Contractor || selectedEntrantType == .Vendor else {
       return
     }
@@ -212,8 +226,8 @@ class CreatePassController: UIViewController {
       }
     }.map { (key, value) in
       if key == .dateOfVisit {
+        // get current date to display in the date of visit field since it will most likely default to current day
         let todaysDate = AccessPassGenerator.AccessPass.dateFormatter.string(from: Date())
-        print(todaysDate)
         value.text = todaysDate
       }
       if key == .projectNumber || key == .companyName {
@@ -222,6 +236,7 @@ class CreatePassController: UIViewController {
     }
   }
   
+  // clears activeTextFields property, clears text and disables all textfields
   func disableTextFields() {
     activeTextFields = [:]
     let views = informationStackViews.flatMap { $0.arrangedSubviews }
@@ -235,11 +250,16 @@ class CreatePassController: UIViewController {
   
   
   func keyboardWillShow(notification: NSNotification) {
-    let shouldMove = activeTextField == activeTextFields[.city] || activeTextField == activeTextFields[.state] || activeTextField == activeTextFields[.zipCode]
-    if shouldMove {
-      UIView.animate(withDuration: 0.8) {
-        self.mainStackViewTopConstraint.constant = 0.0
-        self.view.layoutIfNeeded()
+    // in portrait, the only textfields that are covered are the ones in the bottom row, so move keyboard for those
+    if let userInfoDict = notification.userInfo,
+      let keyboardFrameValue = userInfoDict[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+      let keyboardFrame = keyboardFrameValue.cgRectValue
+      let shouldMove = activeTextField == activeTextFields[.city] || activeTextField == activeTextFields[.state] || activeTextField == activeTextFields[.zipCode]
+      if shouldMove {
+        UIView.animate(withDuration: 0.8) {
+          self.mainStackViewTopConstraint.constant = 100 - keyboardFrame.size.height - 30
+          self.view.layoutIfNeeded()
+        }
       }
     }
   }

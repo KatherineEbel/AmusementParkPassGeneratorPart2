@@ -88,7 +88,7 @@ extension AccessPassGenerator.AccessPass {
   }
   
   // checks birthdate for age verifiable passes returns true if meets requirements
-  var isVerified: Bool {
+  var isVerified: (success:Bool, message: AccessMessage?) {
     if type is AgeVerifiable && type is GuestType {
       do {
         let verified: Bool
@@ -98,18 +98,20 @@ extension AccessPassGenerator.AccessPass {
           case .senior(birthdate: let date, contactInfo: _):
             verified = try isValidSeniorAge(dateString: date)
           default:
-            return false
+            return (false, nil)
         }
-        return verified
+        return (verified, nil)
       } catch AccessPassError.FailsChildAgeRequirement(message: let message) {
-          print(message)
+          return (false, message)
       } catch AccessPassError.InvalidDateFormat(message: let message) {
-          print(message)
+          return (false, message)
+      } catch AccessPassError.FailsSeniorAgeRequirement(message: let message) {
+        return (false, message)
       } catch let error {
-          print("\(error)")
+        return (false, "\(error)")
       }
     }
-    return false
+    return (false, nil)
   }
   
 }

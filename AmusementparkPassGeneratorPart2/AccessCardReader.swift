@@ -82,8 +82,8 @@ extension AccessCardReader {
     }
     let success = discountAmount != "0"
     playSound(success)
-    return (success, success ? "\(bdayMessage)\nThis pass doesn't have a \(discountType) discount" :
-    "\(bdayMessage)\nThis pass has a \(discountAmount)% \(discountType) discount")
+    return (success, success ? "\(bdayMessage)\nThis pass has a \(discountAmount)% \(discountType.lowercased()) discount" : "\(bdayMessage)\nThis pass doesn't have a \(discountType.lowercased()) discount")
+    
   }
   
   // swipe a pass for individual types of ride access -- plays appropriate sound

@@ -8,7 +8,7 @@
 
 import Foundation
 
-// date format must be "yyyy-MM-dd"
+// date format must be "yyyy/MM/dd"
 typealias BirthDate = String
 fileprivate let seniorAge: TimeInterval = 65
 
@@ -34,7 +34,7 @@ extension AgeVerifiable {
   func ageFrom(dateString string: BirthDate) throws -> TimeInterval {
     let today = Date()
     guard let birthdate = AccessPassGenerator.AccessPass.dateFormatter.date(from: string) else {
-      throw AccessPassError.InvalidDateFormat(message: "Please enter date in format \"yyyy-mm-dd\"")
+      throw AccessPassError.InvalidDateFormat(message: "Please enter date in format:\n\"yyyy/mm/dd\"")
     }
     let timeInterval = today.timeIntervalSince(birthdate)
     return years(fromSeconds: timeInterval)
@@ -45,7 +45,7 @@ extension AgeVerifiable {
       let age = try ageFrom(dateString: string)
       print(age)
       guard age < 5 else {
-        throw AccessPassError.FailsChildAgeRequirement(message: "Child does not meet age requirements for a free child pass\nPass converted to Classic Pass")
+        throw AccessPassError.FailsChildAgeRequirement(message: "Child does not meet age requirements for a free child pass")
       }
       return age < 5
     }
@@ -55,7 +55,7 @@ extension AgeVerifiable {
     do {
       let age = try ageFrom(dateString: string)
       guard age >= seniorAge else {
-        throw AccessPassError.FailsSeniorAgeRequirement(message: "Guest does not meet age requirements for a Senior Pass.\nPass converted to Classic Pass")
+        throw AccessPassError.FailsSeniorAgeRequirement(message: "Guest does not meet age requirements for a Senior Pass.")
       }
       return age >= seniorAge
     }

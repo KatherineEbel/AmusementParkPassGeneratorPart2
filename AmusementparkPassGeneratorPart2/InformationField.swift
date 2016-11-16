@@ -23,6 +23,7 @@ enum InformationField: Tag {
 }
 
 extension InformationField {
+  // used for keys to help associate textfields with keys for contactInfo dictionary
   var name: String {
     switch self {
       case .dateOfBirth: return "dateOfBirth"
