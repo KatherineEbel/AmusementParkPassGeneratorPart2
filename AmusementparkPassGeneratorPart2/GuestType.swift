@@ -97,13 +97,13 @@ extension GuestType {
   }
   
   var contactDetails: String {
-    var details = "Park Guest"
+    var details: String = ""
     if let information = self.contactInformation {
       let (firstName, lastName) = (information.firstName, information.lastName)
-      details += "\(firstName) \(lastName)"
+      details = "\(firstName) \(lastName)"
       if let streetAddress = information.streetAddress, let city = information.city,
         let state = information.state, let zipcode = information.zipCode {
-        details += " lives at \(streetAddress) \(city), \(state), \(zipcode)"
+        details = "\(details) lives at \(streetAddress) \(city), \(state), \(zipcode)"
       }
     }
     return details

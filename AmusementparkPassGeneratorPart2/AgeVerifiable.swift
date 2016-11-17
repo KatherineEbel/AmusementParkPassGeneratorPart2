@@ -45,7 +45,6 @@ extension AgeVerifiable {
   func isValidChildAge(dateString string: BirthDate) throws -> Bool {
     do {
       let age = try ageFrom(dateString: string)
-      print(age)
       guard age < maxChildAge else {
         throw AccessPassError.FailsChildAgeRequirement(message: "Child does not meet age requirements for a free child pass")
       }

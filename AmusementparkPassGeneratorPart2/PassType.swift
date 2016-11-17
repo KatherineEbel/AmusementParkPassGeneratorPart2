@@ -16,5 +16,6 @@ protocol PassType {
   var skipsQueues: Bool { get }
   var accessAreas: [AccessArea] { get }
   var contactInfo: ContactInformation? { get }
+  var contactDetails: String { get }
   func hasAccess(toArea area: AccessArea) -> Bool
 }

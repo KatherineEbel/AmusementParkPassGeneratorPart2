@@ -22,6 +22,7 @@ class TestPassController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    print(entrantPass.contactDetails)
     setupPassLabels()
     passView.alpha = 0
   }
