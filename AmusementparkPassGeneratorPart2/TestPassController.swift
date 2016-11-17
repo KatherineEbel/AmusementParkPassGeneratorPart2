@@ -46,16 +46,16 @@ class TestPassController: UIViewController {
     if let contactInfo = entrantPass.contactInfo {
       (firstName, lastName) = (contactInfo.firstName, contactInfo.lastName)
     }
-    // Normalize the firstName lastName values by capitalizing them
-    nameLabel.text = "\(firstName.capitalized) \(lastName.capitalized)"
-    passTypeLabel.text = "\(entrantPass.type.subType)" + " Pass"
     let (unlimitedRides, skipsLines) = (entrantPass.allRideAccess, entrantPass.skipsQueues)
     var rideAccess = unlimitedRides ? "Unlimited Rides" : "No Ride Access"
     rideAccess += skipsLines ? " & Skips Queues" : ""
-    rideAccessLabel.text = rideAccess
+    // Normalize the firstName lastName values by capitalizing them
+    nameLabel.text = "\(firstName.capitalized) \(lastName.capitalized)"
+    passTypeLabel.text = "\(entrantPass.type.subType)" + " Pass"
+    rideAccessLabel.text = "\u{2022} \(rideAccess)"
     
-    foodDiscountLabel.text = "\(entrantPass.foodDiscount)% food discount"
-    merchandiseDiscountLabel.text = "\(entrantPass.merchandiseDiscount)% merchandise discount"
+    foodDiscountLabel.text = "\u{2022} \(entrantPass.foodDiscount)% food discount"
+    merchandiseDiscountLabel.text = "\u{2022} \(entrantPass.merchandiseDiscount)% merchandise discount"
   }
   
   func setTextViewFor(success: Bool, message: AccessMessage) {
