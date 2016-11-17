@@ -49,17 +49,13 @@ extension TemporaryType {
   }
   
   var accessAreas: [AccessArea] {
-    get {
       switch self {
         case .contractEmployee(info: _, accessAreas: let areas): return areas
         case .vendor(info: _, accessAreas: let areas): return areas
       }
-    }
-    set {
-      self.accessAreas = newValue
-    }
   }
   
+  // no ride access for either temporary type
   var rideAccess: (allRides: Bool, skipsQueues: Bool) {
     return (false, false)
   }

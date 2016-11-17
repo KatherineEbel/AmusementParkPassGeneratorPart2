@@ -33,12 +33,12 @@ extension HourlyEmployeeType {
     return employee
   }
   
-  static var allTypes: [String] {
-    return ["Food Services", "Ride Services", "Maintenance"]
-  }
-  
   static func getRequiredFields() -> [InformationField] {
     return [.firstName, .lastName, .streetAddress, .city, .state, .zipCode]
+  }
+  
+  static var allTypes: [String] {
+    return ["Food Services", "Ride Services", "Maintenance"]
   }
   
   var subType: SubType {

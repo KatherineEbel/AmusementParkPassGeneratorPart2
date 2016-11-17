@@ -40,7 +40,6 @@
 		27D58A881DD4E8DE0026C9D7 /* TemporaryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D58A871DD4E8DE0026C9D7 /* TemporaryType.swift */; };
 		27D58A8A1DD506450026C9D7 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D58A891DD506450026C9D7 /* Project.swift */; };
 		4469C4F01DD943D700541798 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4469C4EF1DD943D700541798 /* TextFieldDelegate.swift */; };
-		4469C4F21DD9E82F00541798 /* CreatePassControllerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4469C4F11DD9E82F00541798 /* CreatePassControllerError.swift */; };
 		4469C4F61DDA698C00541798 /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4469C4F51DDA698C00541798 /* DummyData.swift */; };
 		4469C4F81DDB2C5F00541798 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4469C4F71DDB2C5F00541798 /* UIViewExtension.swift */; };
 		4469C4FA1DDC7A1100541798 /* AllowedCharactersTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4469C4F91DDC7A1100541798 /* AllowedCharactersTextField.swift */; };
@@ -82,7 +81,6 @@
 		27D58A871DD4E8DE0026C9D7 /* TemporaryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporaryType.swift; sourceTree = "<group>"; };
 		27D58A891DD506450026C9D7 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		4469C4EF1DD943D700541798 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
-		4469C4F11DD9E82F00541798 /* CreatePassControllerError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePassControllerError.swift; sourceTree = "<group>"; };
 		4469C4F51DDA698C00541798 /* DummyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 		4469C4F71DDB2C5F00541798 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		4469C4F91DDC7A1100541798 /* AllowedCharactersTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllowedCharactersTextField.swift; sourceTree = "<group>"; };
@@ -197,17 +195,10 @@
 			children = (
 				27D58A601DD4D4E30026C9D7 /* AccessPassError.swift */,
 				278D2ED51DD74ACC00E058D0 /* AccessSoundCue.swift */,
-				4469C4F91DDC7A1100541798 /* AllowedCharactersTextField.swift */,
-				27D58A641DD4D4E30026C9D7 /* ContactInformation.swift */,
-				278D2ED11DD5E59800E058D0 /* ContractEmployeeInformation.swift */,
-				4469C4F11DD9E82F00541798 /* CreatePassControllerError.swift */,
+				4437F8281DDD47FB00C4A4B6 /* TextField/ViewHelpers */,
 				4469C4F51DDA698C00541798 /* DummyData.swift */,
 				2748CA611DD9017700E790CA /* InformationField.swift */,
-				27D58A891DD506450026C9D7 /* Project.swift */,
-				4469C4EF1DD943D700541798 /* TextFieldDelegate.swift */,
-				4469C4F71DDB2C5F00541798 /* UIViewExtension.swift */,
-				278D2ED31DD626B400E058D0 /* Vendor.swift */,
-				27D58A851DD4E58E0026C9D7 /* VendorVisit.swift */,
+				4437F8271DDD39E200C4A4B6 /* SubTypeInfo */,
 			);
 			name = Helper/ErrorTypes;
 			sourceTree = "<group>";
@@ -222,6 +213,28 @@
 				278D2EE51DD8B5EE00E058D0 /* EntrantType.swift */,
 			);
 			name = EntrantTypes;
+			sourceTree = "<group>";
+		};
+		4437F8271DDD39E200C4A4B6 /* SubTypeInfo */ = {
+			isa = PBXGroup;
+			children = (
+				27D58A641DD4D4E30026C9D7 /* ContactInformation.swift */,
+				278D2ED11DD5E59800E058D0 /* ContractEmployeeInformation.swift */,
+				27D58A891DD506450026C9D7 /* Project.swift */,
+				278D2ED31DD626B400E058D0 /* Vendor.swift */,
+				27D58A851DD4E58E0026C9D7 /* VendorVisit.swift */,
+			);
+			name = SubTypeInfo;
+			sourceTree = "<group>";
+		};
+		4437F8281DDD47FB00C4A4B6 /* TextField/ViewHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				4469C4F91DDC7A1100541798 /* AllowedCharactersTextField.swift */,
+				4469C4EF1DD943D700541798 /* TextFieldDelegate.swift */,
+				4469C4F71DDB2C5F00541798 /* UIViewExtension.swift */,
+			);
+			name = TextField/ViewHelpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,7 +316,6 @@
 				27D58A761DD4D4E30026C9D7 /* HourlyEmployeeType.swift in Sources */,
 				4469C4FA1DDC7A1100541798 /* AllowedCharactersTextField.swift in Sources */,
 				27D58A6D1DD4D4E30026C9D7 /* AccessCardReader.swift in Sources */,
-				4469C4F21DD9E82F00541798 /* CreatePassControllerError.swift in Sources */,
 				27D58A6B1DD4D4E30026C9D7 /* CardReader.swift in Sources */,
 				27D58A711DD4D4E30026C9D7 /* AccessPassGenerator.swift in Sources */,
 				27D58A8A1DD506450026C9D7 /* Project.swift in Sources */,

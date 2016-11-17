@@ -22,7 +22,11 @@ enum GuestType: ParkEntrant, AgeVerifiable, Contactable {
 
 extension GuestType {
   
-  static func guestType(forType type: String, withInfo info: [InformationField: String]) -> GuestType? {
+  static var allTypes: [String] {
+    return ["Classic", "VIP", "Free Child", "Senior", "Season Pass"]
+  }
+  
+  static func guest(forSubType type: SubType, withInfo info: [InformationField: String]) -> GuestType? {
     var guestType: GuestType? = nil
     switch type {
       case "Classic": guestType =  GuestType.classic
@@ -37,8 +41,16 @@ extension GuestType {
     }
     return guestType
   }
-  static var allTypes: [String] {
-    return ["Classic", "VIP", "Free Child", "Senior", "Season Pass"]
+  
+  static func getRequiredFields(fromTitle title: String) -> [InformationField] {
+    switch title {
+      case "Classic", "VIP": return []
+      case "Free Child": return [.dateOfBirth]
+      case "Senior": return [.dateOfBirth, .firstName, .lastName]
+      case "Season Pass":
+        return [.firstName, .lastName, .streetAddress, .city, .state, .zipCode]
+      default: return []
+    }
   }
   
   var subType: SubType {
@@ -51,16 +63,6 @@ extension GuestType {
     }
   }
   
-  static func getRequiredFields(fromTitle title: String) -> [InformationField] {
-    switch title {
-      case "Classic", "VIP": return []
-      case "Free Child": return [.dateOfBirth]
-      case "Senior": return [.dateOfBirth, .firstName, .lastName]
-      case "Season Pass":
-        return [.firstName, .lastName, .streetAddress, .city, .state, .zipCode]
-      default: return []
-    }
-  }
   
   // returns a named tuple for each GuestType case (accessed by discounts.food, discounts.merchandise)
   var discounts: (food: Percent, merchandise: Percent) {

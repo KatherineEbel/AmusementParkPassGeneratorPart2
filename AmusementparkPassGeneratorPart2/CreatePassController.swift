@@ -8,6 +8,7 @@
 
 import UIKit
 
+// UITextfield delegate extension in TextFieldDelegate.swift
 class CreatePassController: UIViewController {
 
   @IBOutlet weak var generatePassButton: UIButton!
@@ -16,7 +17,6 @@ class CreatePassController: UIViewController {
   @IBOutlet weak var entrantSubTypeStackView: UIStackView!
   @IBOutlet weak var mainStackViewTopConstraint: NSLayoutConstraint!
   @IBOutlet var informationStackViews: [UIStackView]!
-  @IBOutlet weak var tapToDismissKeyboard: UITapGestureRecognizer!
   
   let passGenerator = AccessPassGenerator.passGenerator
   var selectedEntrantType: EntrantType = .Guest
@@ -37,7 +37,6 @@ class CreatePassController: UIViewController {
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
   
   // MARK: IBAction Methods
@@ -54,12 +53,12 @@ class CreatePassController: UIViewController {
   // alerts user.
   @IBAction func generatePassButtonPressed() {
     if let infoDict = createInfoDict(), let guest = guestWithInfo(infoDict: infoDict) {
-      let pass = passGenerator.createPass(forEntrant: guest)
-      if let guestPass = pass.entrantPass {
+      let result = passGenerator.createPass(forEntrant: guest)
+      if let guestPass = result.entrantPass {
         entrantPass = guestPass
         performSegue(withIdentifier: "testPass", sender: self)
       } else {
-        let alert = UIAlertController(title: "Sorry, something went wrong!", message: pass.message, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Sorry, something went wrong!", message: result.message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Try again?", style: .cancel, handler: nil)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
@@ -81,12 +80,12 @@ class CreatePassController: UIViewController {
           case "Season Pass": info = dummyData.contactInformation
           default: break
         }
-      case .Employee, .Manager: info = dummyData.contactInformation
-      case .Contractor: info = dummyData.contactInformation
+      case .Employee, .Manager, .Contractor: info = dummyData.contactInformation
       case .Vendor: info = dummyData.vendorInfo
     }
     UIView.animate(withDuration: 0.8) {
-      _ = info.map { (key, value) in self.activeTextFields[key]?.text = value }
+      // set the text in the activeTextFields
+      _ = info.map { (field, text) in self.activeTextFields[field]?.text = text }
     }
   }
   
@@ -130,6 +129,7 @@ class CreatePassController: UIViewController {
     _ = stackview.arrangedSubviews.map { view in
       if let button = view as? UIButton {
         let inactiveColor = UIColor(red: 189/255.0, green: 170/255.0, blue: 208/255.0, alpha: 1.0)
+        // if button is active set to white color, else set to inactive color
         button.setTitleColor(button == selectedButton ? .white : inactiveColor, for: .normal)
       }
     }
@@ -173,7 +173,7 @@ class CreatePassController: UIViewController {
     if let passInfo = createInfoDict() {
       switch selectedEntrantType {
       case .Guest:
-        if let guest = GuestType.guestType(forType: selectedSubType, withInfo: passInfo) {
+        if let guest = GuestType.guest(forSubType: selectedSubType, withInfo: passInfo) {
           parkGuest = guest
         }
       case .Employee:

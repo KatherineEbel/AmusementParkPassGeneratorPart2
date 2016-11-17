@@ -8,17 +8,19 @@
 
 import Foundation
 
-// private constants for manager food discounts
+// private constants for manager discounts
 fileprivate let managerFoodDiscount: Percent = 25
 fileprivate let managerMerchandiseDiscount: Percent = 25
 
+// kept manager as it's own type to leave open to adding more types...
 enum ManagerType: ParkEntrant, Contactable {
     case manager(ContactInformation)
 }
 
 extension ManagerType {
   
-  static func managerType(forSubType type: String, withInfo info: [InformationField: String]) -> ManagerType? {
+  // given a subtype and required info, return a ManagerType
+  static func managerType(forSubType type: SubType, withInfo info: [InformationField: String]) -> ManagerType? {
     if let contactInformation = ContactInformation(withDictionary: info) {
       return ManagerType.manager(contactInformation)
     } else {
@@ -58,6 +60,7 @@ extension ManagerType {
     }
   }
   
+  // returns printable description of contact information
   var contactDetails: String {
     let (firstName, lastName) = (contactInformation.firstName, contactInformation.lastName)
     if let streetAddress = contactInformation.streetAddress, let city = contactInformation.city,
@@ -66,6 +69,5 @@ extension ManagerType {
     } else {
       return "\(firstName) \(lastName)"
     }
-  
   }
 }
