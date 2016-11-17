@@ -7,7 +7,10 @@
 //
 
 import AudioToolbox
-struct AccessCardReader: CardReader {
+
+typealias AccessMessage = String
+
+struct AccessCardReader {
   static let sharedCardReader = AccessCardReader()
   var (lastPassID, lastTimeStamp): (passID:PassID?, timeStamp: TimeInterval?)
   var minimumTimeWait: TimeInterval = 10
@@ -20,46 +23,6 @@ struct AccessCardReader: CardReader {
 }
 
 extension AccessCardReader {
-  // returns a message of all accessable areas for pass
-  func areaAccess(forPass pass: PassType) -> AccessMessage {
-    let message: AccessMessage = "Card has access for: "
-    let accessAreas = pass.accessAreas.map { (accessArea) -> String in
-      accessArea.rawValue
-    }
-    if accessAreas.count > 1 {
-      let prefix = accessAreas.prefix(accessAreas.count - 1)
-      let suffix = accessAreas.suffix(1).first!
-      return "\(message) \(prefix.joined(separator: " area, ")) and \(suffix) area"
-    } else {
-      return "\(message) \(accessAreas[0]) area"
-    }
-  }
-  
-  // returns a message for all types of ride access
-  func rideAccess(forPass pass: PassType) -> AccessMessage {
-    var message = "Pass has access to: "
-    let allRideAccess = pass.allRideAccess
-    let skipsQueues = pass.skipsQueues
-    message += allRideAccess ? "All Rides" : ""
-    if allRideAccess && skipsQueues {
-      message += " ,and skips lines for queues"
-    } else {
-      message = "This pass does not have any ride access"
-    }
-    return message
-  }
-  
-  // returns a message for all associated discounts for pass
-  func discountAccess(forPass pass: PassType) -> AccessMessage {
-    let foodDiscount = pass.foodDiscount
-    let merchandiseDiscount = pass.merchandiseDiscount
-    if foodDiscount == 0 && merchandiseDiscount == 0 {
-      return "This pass is not eligible for any discounts"
-    } else {
-      return "This pass gets a food discount of \(foodDiscount)%, and a merchandise discount of \(merchandiseDiscount)%"
-    }
-  }
-  
   // MARK: Swipe Access
   // takes pass and an access area and returns true /plays sound if pass has access
   func swipeAccess(_ pass: PassType, hasAccessTo area: AccessArea) -> (hasAccess: Bool, message: AccessMessage) {

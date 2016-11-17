@@ -10,7 +10,7 @@ import Foundation
 
 enum TemporaryType: ParkEntrant, Contactable {
   case vendor(info: VendorVisitInformation, accessAreas: [AccessArea])
-  case contractEmployee(info: ContractEmployeeInformation, accessAreas: [AccessArea])
+  case contractEmployee(contactInfo: ContractEmployeeInformation, accessAreas: [AccessArea])
   
 }
 
@@ -25,33 +25,33 @@ extension TemporaryType {
         }
       case "Contractor":
         var infoDict = info
-        if let projectValue = infoDict.removeValue(forKey: .projectNumber), let projectID = Int(projectValue), let contractorInfo = ContractEmployeeInformation(projectID: projectID, withInfo: infoDict) {
-          temporaryType = TemporaryType.contractEmployee(info: contractorInfo, accessAreas: accessAreas)
+        if let projectNumber = infoDict.removeValue(forKey: .projectNumber), let contractorInfo = ContractEmployeeInformation(projectNumber: projectNumber, withInfo: infoDict) {
+          temporaryType = TemporaryType.contractEmployee(contactInfo: contractorInfo, accessAreas: accessAreas)
         }
       default: return temporaryType
     }
     return temporaryType
   }
   
-  static func getRequiredFields(fromTitle title: String) -> [InformationField] {
-    if let _ = Int(title) {
-      return [.projectNumber, .firstName, .lastName, .streetAddress, .city, .state, .zipCode]
-    } else {
-      return [.dateOfBirth, .dateOfVisit, .firstName, .lastName, .companyName]
+  static func getRequiredFields(forType type: EntrantType) -> [InformationField] {
+    switch type {
+      case .Contractor: return [.projectNumber, .firstName, .lastName, .streetAddress, .city, .state, .zipCode]
+      case .Vendor: return [.dateOfBirth, .dateOfVisit, .firstName, .lastName, .companyName]
+      default: return []
     }
   }
   
   var subType: SubType {
     switch self {
-      case .contractEmployee: return "Contractor"
       case .vendor: return "Vendor"
+      case .contractEmployee: return "Contractor"
     }
   }
   
   var accessAreas: [AccessArea] {
       switch self {
-        case .contractEmployee(info: _, accessAreas: let areas): return areas
         case .vendor(info: _, accessAreas: let areas): return areas
+        case .contractEmployee(contactInfo: _, accessAreas: let areas): return areas
       }
   }
   
@@ -63,17 +63,17 @@ extension TemporaryType {
   var contactInformation: ContactInformation {
     switch self {
       case .vendor(info: let info, accessAreas: _): return info.contactInfo
-      case .contractEmployee(info: let info, accessAreas: _): return info
+      case .contractEmployee(contactInfo: let info, accessAreas: _): return info
     }
   }
   
   // returns a string representation of contact info
   var contactDetails: String {
     switch self {
-    case .contractEmployee(info: let contractEmployee):
-      return contractEmployee.info.contactDetails
     case .vendor(info: let vendorVisit):
       return vendorVisit.info.contactDetails
+    case .contractEmployee(contactInfo: let contractEmployee):
+      return contractEmployee.contactInfo.contactDetails
     }
   }
 }

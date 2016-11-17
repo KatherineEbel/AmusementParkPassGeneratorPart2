@@ -9,7 +9,8 @@
 import Foundation
 
 struct Project {
-  let identificationNumber: Int
+  // using string for project number since no calculation is done with the value
+  let projectNumber: String
   let accessAreas: [AccessArea]
 }
 

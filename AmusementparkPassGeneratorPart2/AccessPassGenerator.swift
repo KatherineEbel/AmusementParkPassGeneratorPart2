@@ -14,17 +14,17 @@ final class AccessPassGenerator {
   // only way to create a access pass is the singleton passGenerator
   static let passGenerator = AccessPassGenerator()
   let openProjects = [
-    Project(identificationNumber: 1001, accessAreas: [.amusement, .rideControl]),
-    Project(identificationNumber: 1002, accessAreas: [.amusement, .rideControl, .maintenance]),
-    Project(identificationNumber: 1003, accessAreas: [.amusement, .rideControl, .kitchen, .maintenance, .office]),
-    Project(identificationNumber: 2001, accessAreas: [.office]),
-    Project(identificationNumber: 2002, accessAreas: [.kitchen, .maintenance,])
+    Project(projectNumber: "1001", accessAreas: [.amusement, .rideControl]),
+    Project(projectNumber: "1002", accessAreas: [.amusement, .rideControl, .maintenance]),
+    Project(projectNumber: "1003", accessAreas: [.amusement, .rideControl, .kitchen, .maintenance, .office]),
+    Project(projectNumber: "2001", accessAreas: [.office]),
+    Project(projectNumber: "2002", accessAreas: [.kitchen, .maintenance,])
   ]
   let allowedVendors = [
     Vendor(companyName: "Acme", accessAreas: [.kitchen]),
     Vendor(companyName: "Orkin", accessAreas: [.amusement, .rideControl, .kitchen]),
     Vendor(companyName: "Fedex", accessAreas: [.maintenance, .office]),
-    Vendor(companyName: "NW Electrical", accessAreas: [.kitchen]),
+    Vendor(companyName: "NW Electrical", accessAreas: [.amusement, .rideControl, .kitchen, .maintenance, .office]),
   ]
   private init() { }
   
@@ -93,7 +93,7 @@ final class AccessPassGenerator {
           return (nil, pass.isVerified.message!)
         }
     case .seasonPass(let contactInfo):
-      return (AccessPass(type: GuestType.seasonPass(contactInfo)), "Success")
+      return (AccessPass(type: GuestType.seasonPass(contactInfo: contactInfo)), "Success")
     }
   }
   
@@ -101,10 +101,10 @@ final class AccessPassGenerator {
     switch entrant {
       // don't pass in access areas for temp types because the park (and therefore pass generator) tracks the open projects
       // and allowed vendors, and knows what areas they were allowed entry to.
-      case .contractEmployee(info: let info, accessAreas: _):
-        let projectNumber = info.projectID
-        if let project = (openProjects.filter { $0.identificationNumber == projectNumber }).first { // try to find the project id that the contractEmployee has
-          return AccessPass(type: TemporaryType.contractEmployee(info: info, accessAreas: project.accessAreas))
+      case .contractEmployee(contactInfo: let info, accessAreas: _):
+        let projectNumber = info.projectNumber
+        if let project = (openProjects.filter { $0.projectNumber == projectNumber }).first { // try to find the project id that the contractEmployee has
+          return AccessPass(type: TemporaryType.contractEmployee(contactInfo: info, accessAreas: project.accessAreas))
         } else {
           // If park does not know about the project number then refuse to create a pass
           throw AccessPassError.InvalidProjectNumber(message: "No project found with that access number, please double check entry.")

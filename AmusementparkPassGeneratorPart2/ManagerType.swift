@@ -14,7 +14,7 @@ fileprivate let managerMerchandiseDiscount: Percent = 25
 
 // kept manager as it's own type to leave open to adding more types...
 enum ManagerType: ParkEntrant, Contactable {
-    case manager(ContactInformation)
+  case manager(contactInfo: ContactInformation)
 }
 
 extension ManagerType {
@@ -22,7 +22,7 @@ extension ManagerType {
   // given a subtype and required info, return a ManagerType
   static func managerType(forSubType type: SubType, withInfo info: [InformationField: String]) -> ManagerType? {
     if let contactInformation = ContactInformation(withDictionary: info) {
-      return ManagerType.manager(contactInformation)
+      return ManagerType.manager(contactInfo: contactInformation)
     } else {
       return nil
     }

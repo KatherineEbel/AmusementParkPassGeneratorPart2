@@ -9,10 +9,10 @@
 import Foundation
 
 class ContractEmployeeInformation: ContactInformation {
-  let projectID: Int
+  let projectNumber: String
   
-  init?(projectID: Int, withInfo info: [InformationField: String]) {
-    self.projectID = projectID
+  init?(projectNumber: String, withInfo info: [InformationField: String]) {
+    self.projectNumber = projectNumber
     super.init(withDictionary: info)
   }
 }

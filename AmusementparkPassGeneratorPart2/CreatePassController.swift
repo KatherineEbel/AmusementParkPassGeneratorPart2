@@ -106,7 +106,7 @@ class CreatePassController: UIViewController {
       case .Employee: titles = HourlyEmployeeType.allTypes
       case .Manager: titles = ManagerType.allTypes
       case .Vendor: titles = passGenerator.allowedVendors.map { $0.companyName }
-      case .Contractor: titles = passGenerator.openProjects.map { String($0.identificationNumber) }
+      case .Contractor: titles = passGenerator.openProjects.map { String($0.projectNumber) }
     }
     addSubTypeButtons(withTitles: titles)
   }
@@ -185,7 +185,7 @@ class CreatePassController: UIViewController {
           parkGuest = manager
         }
       case .Contractor:
-        let accessAreas = (passGenerator.openProjects.filter { $0.identificationNumber == Int(selectedSubType) }.first!).accessAreas
+        let accessAreas = (passGenerator.openProjects.filter { $0.projectNumber == selectedSubType }.first!).accessAreas
         if let tempType = TemporaryType.temporaryType(forEntrantType: selectedEntrantType, withInfo: passInfo, accessAreas: accessAreas) {
           parkGuest = tempType
         }
@@ -217,11 +217,12 @@ class CreatePassController: UIViewController {
     // get the required fields depending on the selected entrant and subtype
     switch selectedEntrantType {
     case .Guest:
-      tags = GuestType.getRequiredFields(fromTitle: selectedSubType).map { $0.rawValue }
+      tags = GuestType.getRequiredFields(forSubType: selectedSubType).map { $0.rawValue }
     case .Employee, .Manager:
       tags = HourlyEmployeeType.getRequiredFields().map { $0.rawValue }
     case .Contractor, .Vendor:
-      tags = TemporaryType.getRequiredFields(fromTitle: selectedSubType).map { $0.rawValue }
+      // don't use subtype since that is a companyname or projectNumber for these types
+      tags = TemporaryType.getRequiredFields(forType: selectedEntrantType).map { $0.rawValue }
     }
     // animate the texfields into not disabled state
     UIView.animate(withDuration: 0.5) { self.enableTextFields(withTags: tags) }

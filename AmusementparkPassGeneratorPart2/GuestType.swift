@@ -17,7 +17,7 @@ enum GuestType: ParkEntrant, AgeVerifiable, Contactable {
   case VIP
   case freeChild(birthdate: BirthDate)
   case senior(birthdate: BirthDate, contactInfo: ContactInformation)
-  case seasonPass(ContactInformation)
+  case seasonPass(contactInfo: ContactInformation)
 }
 
 extension GuestType {
@@ -35,16 +35,15 @@ extension GuestType {
       case "Senior": guestType = GuestType.senior(birthdate: info[.dateOfBirth]!, contactInfo: ContactInformation(firstName: info[.firstName]!, lastName: info[.lastName]!))
       case "Season Pass":
         if let contactInfo = ContactInformation(withDictionary: info) {
-          guestType = GuestType.seasonPass(contactInfo)
+          guestType = GuestType.seasonPass(contactInfo: contactInfo)
         }
       default: return guestType
     }
     return guestType
   }
   
-  static func getRequiredFields(fromTitle title: String) -> [InformationField] {
-    switch title {
-      case "Classic", "VIP": return []
+  static func getRequiredFields(forSubType type: SubType) -> [InformationField] {
+    switch type {
       case "Free Child": return [.dateOfBirth]
       case "Senior": return [.dateOfBirth, .firstName, .lastName]
       case "Season Pass":

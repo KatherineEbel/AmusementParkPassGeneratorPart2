@@ -13,9 +13,9 @@ private let employeeFoodDiscount: Percent = 15
 private let employeeMerchandiseDicount: Percent = 25
 
 enum HourlyEmployeeType: ParkEntrant, Contactable {
-  case foodServices(ContactInformation)
-  case rideServices(ContactInformation)
-  case maintenance(ContactInformation)
+  case foodServices(contactInfo: ContactInformation)
+  case rideServices(contactInfo: ContactInformation)
+  case maintenance(contactInfo: ContactInformation)
 }
 
 extension HourlyEmployeeType {
@@ -24,9 +24,9 @@ extension HourlyEmployeeType {
     var employee: HourlyEmployeeType? = nil
     if let contactInformation = ContactInformation(withDictionary: info) {
       switch type {
-        case "Food Services": employee = HourlyEmployeeType.foodServices(contactInformation)
-        case "Ride Services": employee = HourlyEmployeeType.rideServices(contactInformation)
-        case "Maintenance": employee = HourlyEmployeeType.maintenance(contactInformation)
+      case "Food Services": employee = HourlyEmployeeType.foodServices(contactInfo: contactInformation)
+      case "Ride Services": employee = HourlyEmployeeType.rideServices(contactInfo: contactInformation)
+      case "Maintenance": employee = HourlyEmployeeType.maintenance(contactInfo: contactInformation)
         default: return employee
       }
     }
